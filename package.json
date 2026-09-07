@@ -15,7 +15,9 @@
   "files": [
     "dist",
     "DESIGN-SYSTEM-v2.md",
-    "CLAUDE.md"
+    "CLAUDE.md",
+    "NOTICE",
+    "CHANGELOG.md"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
