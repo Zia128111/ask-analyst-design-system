@@ -1,0 +1,52 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # 160 static assertions. Every rule encodes a mistake v1.0 actually
+      # shipped, so a failure here is a regression, not a style opinion.
+      - name: Static suites
+        run: npm run verify
+
+      - name: Lint
+        run: npm run lint
+
+      # audit:slots is deliberately NOT here: it prints a snippet to paste
+      # into the browser console and always exits 0, so it would assert
+      # nothing. Run it by hand against the docs page.
+      - name: Themed-component coverage
+        run: npm run coverage
+
+      # dist/ is committed so consumers can install from GitHub without
+      # building. That only stays safe if the committed build matches src —
+      # otherwise a stale bundle ships silently to every project.
+      - name: Rebuild library
+        run: npm run build:lib
+
+      - name: Fail if committed dist/ is stale
+        run: |
+          if ! git diff --quiet -- dist; then
+            echo "::error::dist/ is out of date. Run 'npm run build:lib' and commit dist/."
+            git diff --stat -- dist
+            exit 1
+          fi
+          echo "dist/ matches src."
+
+      - name: Docs app builds
+        run: npm run build

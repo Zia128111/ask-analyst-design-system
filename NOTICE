@@ -1,0 +1,53 @@
+THIRD-PARTY NOTICES
+===================
+
+This package redistributes the following third-party material. Each remains
+under its own licence, which is not superseded by the LICENSE file.
+
+
+1. Lato (typeface)
+------------------
+Shipped as WOFF2 binaries in dist/fonts/, via the `lato-font` npm package.
+
+    Copyright (c) Lukasz Dziedzic
+    SIL Open Font License, Version 1.1 (OFL-1.1)
+    https://scripts.sil.org/OFL
+
+Self-hosted deliberately: Google Fonts serves Lato in weights 100/300/400/
+700/900 only, so the 500 and 600 the type scale depends on silently fell back
+to 400. See DESIGN-SYSTEM-v2.md, section 3.
+
+
+2. Tabler Icons
+---------------
+    Copyright (c) 2020-2026 Paweł Kuna
+    MIT License
+    https://github.com/tabler/tabler-icons
+
+Used two ways:
+
+  a) At runtime via the `@tabler/icons-react` dependency (v3.46.0), which is
+     not bundled into dist/.
+
+  b) The path geometry of `caret-up-filled` and `caret-down-filled` was
+     reproduced from that package's published source to create local Figma
+     components, because the Tabler Figma community library predates those
+     two icons. The MIT licence permits this; the attribution above is the
+     condition. See DESIGN-SYSTEM-v2.md, section 8quinquies.
+
+
+3. Mantine
+----------
+    Copyright (c) 2021 Vitaly Rtishchev
+    MIT License
+    https://github.com/mantinedev/mantine
+
+A peer dependency. Not redistributed here — the consuming application
+installs its own copy.
+
+
+4. Google Charts
+----------------
+Loaded at runtime from gstatic.com by `react-google-charts`. Not
+redistributed, and subject to Google's own terms. It cannot be self-hosted;
+see DESIGN-SYSTEM-v2.md, section 8bis.

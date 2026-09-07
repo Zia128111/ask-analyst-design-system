@@ -1,0 +1,44 @@
+# Changelog
+
+All notable changes to the Ask Analyst Design System.
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
+versioning follows [Semantic Versioning](https://semver.org/).
+
+## [1.0.0] — 2026-09-07
+
+First consumable release. The system existed before this, but only as an app —
+it could not be installed into another project.
+
+### Added
+- Installable package `@akseer/ask-analyst-design-system` with an `exports`
+  map, type declarations and a single `styles.css`.
+- `CLAUDE.md`, the enforced rule set, shipped with the package.
+- Continuous integration: the six static suites, lint, Styles API slot audit,
+  themed-component coverage, and a check that the committed `dist/` matches
+  `src/`.
+- `LICENSE` and `NOTICE` covering the redistributed Lato binaries (OFL-1.1)
+  and the reproduced Tabler caret geometry (MIT).
+
+### Changed
+- React, `react-dom` and the four Mantine packages moved from `dependencies`
+  to `peerDependencies`. As regular dependencies they gave the consuming app
+  a second copy of React, which breaks hooks.
+- `dist/` is committed and the `prepare` script removed. `prepare` forced
+  every consumer to download the full devDependency tree and run a build
+  before npm could extract anything — minutes per project, every time.
+- The documentation app builds to `dist-docs/`. It shared `dist/` with the
+  library and was overwriting the published bundle.
+- `theme/components` exports an explicitly annotated `MantineThemeComponents`;
+  its inferred type referenced Mantine internals and could not be named across
+  a package boundary.
+
+### Removed
+- `recharts`, unused since charts moved to `react-google-charts`.
+
+### Known deviations
+- `text-on-brand` is white on `#1485ff` = **3.60:1**. Passes AA for large text
+  and non-text UI, fails it for small text. A recorded brand decision;
+  `verify:tokens` prints the shortfall on every run and axe reports exactly
+  this and nothing else.
+- `Alert` distinguishes its four tones by colour and title text alone, with no
+  icon, in both code and Figma.
