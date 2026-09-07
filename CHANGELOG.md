@@ -32,6 +32,18 @@ it could not be installed into another project.
   its inferred type referenced Mantine internals and could not be named across
   a package boundary.
 
+### Fixed
+- Font URLs were absolute (`/fonts/lato-*.woff2`). They resolved only because
+  the documentation app serves `public/` at the site root; in an installed
+  package they 404'd, so Lato silently fell back and the whole reason for
+  self-hosting it was defeated. Fonts now ship in `dist/fonts/` and are
+  attached by a plain `@import` that resolves relative to the stylesheet.
+- The library build is now reproducible across platforms. CSS module hashes
+  derived from the file path differed between Windows and Linux, so a
+  CI rebuild disagreed with the committed `dist/` in 56 places.
+- The documentation app's `public/` (favicon, icon sprite, duplicate fonts) is
+  no longer copied into the package.
+
 ### Removed
 - `recharts`, unused since charts moved to `react-google-charts`.
 

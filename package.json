@@ -26,12 +26,13 @@
       "import": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./fonts.css": "./dist/fonts.css"
   },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && node scripts/build-fonts.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "verify:tokens": "node --experimental-strip-types scripts/verify-tokens.mjs",

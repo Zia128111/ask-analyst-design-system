@@ -7,7 +7,8 @@ under its own licence, which is not superseded by the LICENSE file.
 
 1. Lato (typeface)
 ------------------
-Shipped as WOFF2 binaries in dist/fonts/, via the `lato-font` npm package.
+Shipped as WOFF2 binaries in dist/fonts/, attached via dist/fonts.css.
+Sourced from the `lato-font` npm package.
 
     Copyright (c) Lukasz Dziedzic
     SIL Open Font License, Version 1.1 (OFL-1.1)

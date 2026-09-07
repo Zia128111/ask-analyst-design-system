@@ -13,7 +13,10 @@
  * overrides silently vanish.
  * ========================================================================= */
 
-@import './theme/fonts.css';    /* self-hosted Lato — Google Fonts omits 500/600 */
+/* NOTE: theme/fonts.css is deliberately NOT imported here. Vite always
+ * inlines assets in library mode, which turned the eight WOFF2 faces into
+ * a 2 MB base64 stylesheet. scripts/build-fonts.mjs copies them verbatim
+ * and prepends an @import to the built dist/styles.css instead. */
 @import './index.css';          /* focus ring, touch targets, tabular figures, RTL */
 @import './theme/density.css';  /* comfortable / compact / condensed */
 @import './theme/print.css';    /* research reports and letterheads */
