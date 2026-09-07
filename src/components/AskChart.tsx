@@ -7,6 +7,7 @@ import {
   barChartOptions,
   baseChartOptions,
   lineChartOptions,
+  mergeChartOptions,
   mirrorValueAxis,
   pieChartOptions,
   type Dir,
@@ -137,7 +138,9 @@ export function AskChart({
     const themed = VERTICAL_VALUE_AXIS.has(kind)
       ? mirrorValueAxis(base, dir as Dir, seriesCount)
       : base;
-    return { ...themed, colors, ...(options ?? {}) };
+    // One level deep: a caller setting a single hAxis property must not wipe
+    // the themed textStyle and gridlines sitting beside it.
+    return mergeChartOptions({ ...themed, colors }, options);
   }, [kind, scheme, dir, seriesKeys, seriesCount, options]);
 
   const [header, ...rows] = data;

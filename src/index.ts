@@ -55,6 +55,7 @@ export type { ColorMode } from './lib/chart';
 export {
   baseChartOptions,
   lineChartOptions,
+  mergeChartOptions,
   mirrorValueAxis,
   areaChartOptions,
   barChartOptions,

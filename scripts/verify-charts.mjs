@@ -18,7 +18,11 @@ import {
   green,
   red,
 } from '../src/theme/tokens.ts';
-import { lineChartOptions, mirrorValueAxis } from '../src/lib/googleChartTheme.ts';
+import {
+  lineChartOptions,
+  mergeChartOptions,
+  mirrorValueAxis,
+} from '../src/lib/googleChartTheme.ts';
 
 /* ---------- colour maths ---------- */
 const hex2rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
@@ -201,6 +205,39 @@ check(
 check(
   'LTR is left untouched by the mirror',
   mirrorValueAxis(ltr, 'ltr', 2) === ltr,
+  'same object — no work done',
+);
+
+/* ---------------------------------------------------------------------------
+ * OPTION MERGING
+ *
+ * `options` is documented as "merged last". A plain spread replaces nested
+ * objects whole, so setting one hAxis property used to discard the themed
+ * textStyle beside it and the axis reverted to Google's #222 — invisible in
+ * dark mode, and silent.
+ * ------------------------------------------------------------------------ */
+
+const themed = lineChartOptions('dark', 'ltr');
+const withOverride = mergeChartOptions(themed, { hAxis: { showTextEvery: 7 } });
+check(
+  'a nested override keeps the themed siblings',
+  withOverride.hAxis.textStyle?.color === chartSurface.dark.axisLabel &&
+    withOverride.hAxis.showTextEvery === 7,
+  `color ${withOverride.hAxis.textStyle?.color}, showTextEvery ${withOverride.hAxis.showTextEvery}`,
+);
+check(
+  'an unrelated themed group is untouched',
+  withOverride.vAxis.textStyle?.color === chartSurface.dark.axisLabel,
+  String(withOverride.vAxis.textStyle?.color),
+);
+check(
+  'a whole value still replaces rather than merges',
+  mergeChartOptions(themed, { colors: ['#000000'] }).colors.length === 1,
+  'arrays are replaced, never half-merged',
+);
+check(
+  'no options is a no-op',
+  mergeChartOptions(themed, undefined) === themed,
   'same object — no work done',
 );
 

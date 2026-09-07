@@ -374,16 +374,16 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	amber: () => k,
 	blue: () => w,
 	borderWidth: () => P,
-	breakpoint: () => I,
+	breakpoint: () => L,
 	chartCategorical: () => R,
 	chartDiverging: () => vn,
 	chartMark: () => B,
 	chartSequential: () => _n,
 	chartSurface: () => z,
-	container: () => L,
+	container: () => hn,
 	controlHeight: () => un,
-	duration: () => pn,
-	easing: () => mn,
+	duration: () => I,
+	easing: () => pn,
 	focusRing: () => gn,
 	fontSize: () => A,
 	fontWeight: () => sn,
@@ -403,7 +403,7 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	semanticLight: () => an,
 	shadow: () => F,
 	space: () => M,
-	zIndex: () => hn
+	zIndex: () => mn
 }), w = [
 	"#f0f7ff",
 	"#e0efff",
@@ -594,16 +594,16 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	sm: "32px",
 	md: "40px",
 	lg: "48px"
-}, dn = "44px", fn = "24px", pn = {
+}, dn = "44px", fn = "24px", I = {
 	instant: "0ms",
 	fast: "120ms",
 	base: "200ms",
 	slow: "320ms"
-}, mn = {
+}, pn = {
 	standard: "cubic-bezier(0.2, 0, 0, 1)",
 	decelerate: "cubic-bezier(0, 0, 0, 1)",
 	accelerate: "cubic-bezier(0.3, 0, 1, 1)"
-}, hn = {
+}, mn = {
 	base: 0,
 	raised: 10,
 	sticky: 1100,
@@ -612,13 +612,13 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	popover: 1400,
 	toast: 1500,
 	tooltip: 1600
-}, I = {
+}, L = {
 	sm: "640px",
 	md: "768px",
 	lg: "1024px",
 	xl: "1280px",
 	"2xl": "1536px"
-}, L = {
+}, hn = {
 	sm: "640px",
 	md: "768px",
 	lg: "1024px",
@@ -795,11 +795,11 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 		xl: F.xl
 	},
 	breakpoints: {
-		xs: I.sm,
-		sm: I.md,
-		md: I.lg,
-		lg: I.xl,
-		xl: I["2xl"]
+		xs: L.sm,
+		sm: L.md,
+		md: L.lg,
+		lg: L.xl,
+		xl: L["2xl"]
 	},
 	black: E,
 	white: "#ffffff",
@@ -810,10 +810,10 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 		radius: N,
 		borderWidth: P,
 		controlHeight: un,
-		duration: pn,
-		easing: mn,
-		zIndex: hn,
-		container: L,
+		duration: I,
+		easing: pn,
+		zIndex: mn,
+		container: hn,
 		fontWeight: sn,
 		letterSpacing: cn,
 		minTouchTarget: dn
@@ -824,12 +824,12 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	for (let [t, n] of Object.entries(N)) e[`--ask-radius-${t}`] = n;
 	for (let [t, n] of Object.entries(P)) e[`--ask-border-${t}`] = n;
 	for (let [t, n] of Object.entries(un)) e[`--ask-control-${t}`] = n;
-	for (let [t, n] of Object.entries(pn)) e[`--ask-duration-${t}`] = n;
-	for (let [t, n] of Object.entries(mn)) e[`--ask-ease-${t}`] = n;
-	for (let [t, n] of Object.entries(hn)) e[`--ask-z-${t}`] = String(n);
+	for (let [t, n] of Object.entries(I)) e[`--ask-duration-${t}`] = n;
+	for (let [t, n] of Object.entries(pn)) e[`--ask-ease-${t}`] = n;
+	for (let [t, n] of Object.entries(mn)) e[`--ask-z-${t}`] = String(n);
 	for (let [t, n] of Object.entries(A)) e[`--ask-font-${t}`] = n;
 	for (let [t, n] of Object.entries(j)) e[`--ask-leading-${t}`] = n;
-	for (let [t, n] of Object.entries(L)) e[`--ask-container-${t}`] = n;
+	for (let [t, n] of Object.entries(hn)) e[`--ask-container-${t}`] = n;
 	e["--ask-focus-width"] = gn.width, e["--ask-focus-offset"] = gn.offset, e["--ask-touch-target"] = dn;
 	let t = (e) => Object.fromEntries(Object.entries(e).map(([e, t]) => [`--ask-${e}`, t])), n = (e) => Object.fromEntries(Object.entries(z[e]).map(([e, t]) => [`--ask-chart-${e.replace(/[A-Z]/g, (e) => "-" + e.toLowerCase())}`, t]));
 	return {
@@ -1170,7 +1170,22 @@ function tr(e, t, n) {
 		}
 	};
 }
-var nr = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
+function nr(e, t) {
+	if (!t) return e;
+	let n = { ...e };
+	for (let [e, r] of Object.entries(t)) {
+		let t = n[e];
+		n[e] = rr(t) && rr(r) ? {
+			...t,
+			...r
+		} : r;
+	}
+	return n;
+}
+function rr(e) {
+	return typeof e == "object" && !!e && !Array.isArray(e);
+}
+var ir = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 	brand: w[6],
 	brandTint: w[0],
 	link: w[7],
@@ -1195,7 +1210,7 @@ var nr = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 	cellPaddingY: 8,
 	cellPaddingX: 12,
 	contentWidth: 600
-}, rr = {
+}, ar = {
 	body: `margin:0;padding:0;background-color:${Z.surface};font-family:${X};font-size:${Q.bodyText}px;line-height:${Q.lineHeightBody}px;color:${Z.textPrimary};`,
 	container: `width:100%;max-width:${Q.contentWidth}px;margin:0 auto;`,
 	h1: `margin:0 0 16px;font-family:${X};font-size:${Q.h1}px;line-height:34px;font-weight:700;color:${Z.textPrimary};`,
@@ -1209,7 +1224,7 @@ var nr = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 	negative: `color:${Z.negative};font-weight:700;`,
 	button: `display:inline-block;padding:12px 20px;background-color:${Z.brand};border-radius:8px;color:${Z.onBrand};font-size:14px;font-weight:700;text-decoration:none;`,
 	meta: `font-size:${Q.label}px;color:${Z.textTertiary};`
-}, ir = {
+}, or = {
 	up: {
 		glyph: "▲",
 		word: "up",
@@ -1228,7 +1243,7 @@ var nr = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 };
 //#endregion
 //#region src/components/Logo.tsx
-function ar({ height: e = 32, title: t = "Ask Analyst", className: n }) {
+function sr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 	let r = Nt();
 	return /* @__PURE__ */ h("svg", {
 		viewBox: "0 0 273 105",
@@ -1314,7 +1329,7 @@ function ar({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 		]
 	});
 }
-function or({ height: e = 32, title: t = "Ask Analyst", className: n }) {
+function cr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 	let r = Nt();
 	return /* @__PURE__ */ h("svg", {
 		viewBox: "0 0 88 105",
@@ -1370,7 +1385,7 @@ var $ = {
 	title: "_title_1g2tx_333",
 	meta: "_meta_1g2tx_365",
 	metaDot: "_metaDot_1g2tx_385"
-}, sr = [
+}, lr = [
 	{
 		label: "Market",
 		href: "#market"
@@ -1408,7 +1423,7 @@ var $ = {
 		href: "#research"
 	}
 ];
-function cr({ items: e = sr, activeHref: t, mainId: n = "main", brand: r, actions: i, width: a = "content" }) {
+function ur({ items: e = lr, activeHref: t, mainId: n = "main", brand: r, actions: i, width: a = "content" }) {
 	let [o, s] = Ft(!1), c = (e, n) => /* @__PURE__ */ m("a", {
 		href: e.href,
 		className: $.navItem,
@@ -1431,7 +1446,7 @@ function cr({ items: e = sr, activeHref: t, mainId: n = "main", brand: r, action
 					/* @__PURE__ */ m(d, {
 						gap: "sm",
 						wrap: "nowrap",
-						children: r ?? /* @__PURE__ */ m(ar, {
+						children: r ?? /* @__PURE__ */ m(sr, {
 							height: 28,
 							title: "Ask Analyst"
 						})
@@ -1474,19 +1489,19 @@ function cr({ items: e = sr, activeHref: t, mainId: n = "main", brand: r, action
 }
 //#endregion
 //#region src/components/AskChart.tsx
-var lr = {
+var dr = {
 	Line: "LineChart",
 	Area: "AreaChart",
 	Bar: "BarChart",
 	Column: "ColumnChart",
 	Pie: "PieChart",
 	Donut: "PieChart"
-}, ur = /* @__PURE__ */ new Set([
+}, fr = /* @__PURE__ */ new Set([
 	"Line",
 	"Area",
 	"Column"
 ]);
-function dr(e, t, n) {
+function pr(e, t, n) {
 	switch (e) {
 		case "Line": return Zn(t, n);
 		case "Area": return Qn(t, n);
@@ -1497,14 +1512,13 @@ function dr(e, t, n) {
 		default: return Y(t, n);
 	}
 }
-function fr({ kind: e, data: t, title: n, description: r, height: i = 240, seriesKeys: a, options: o }) {
+function mr({ kind: e, data: t, title: n, description: r, height: i = 240, seriesKeys: a, options: o }) {
 	let { colorScheme: s } = $e(), { dir: c } = Qe(), l = s === "dark" ? "dark" : s === "light" ? "light" : document.documentElement.getAttribute("data-mantine-color-scheme") ?? "light", u = Math.max(0, (t[0]?.length ?? 1) - 1), ee = Pt(() => {
-		let t = dr(e, l, c), n = a ? a.map((e) => Kn(a).colorFor(e)) : t.colors;
-		return {
-			...ur.has(e) ? tr(t, c, u) : t,
-			colors: n,
-			...o ?? {}
-		};
+		let t = pr(e, l, c), n = a ? a.map((e) => Kn(a).colorFor(e)) : t.colors;
+		return nr({
+			...fr.has(e) ? tr(t, c, u) : t,
+			colors: n
+		}, o);
 	}, [
 		e,
 		l,
@@ -1530,7 +1544,7 @@ function fr({ kind: e, data: t, title: n, description: r, height: i = 240, serie
 				"aria-hidden": "true",
 				className: "ask-chart-frame",
 				children: /* @__PURE__ */ m(It, {
-					chartType: lr[e],
+					chartType: dr[e],
 					data: t,
 					options: ee,
 					width: "100%",
@@ -1558,13 +1572,13 @@ function fr({ kind: e, data: t, title: n, description: r, height: i = 240, serie
 		]
 	});
 }
-var pr = { root: "_root_rwkhr_27" };
+var hr = { root: "_root_rwkhr_27" };
 //#endregion
 //#region src/components/ColorSchemeToggle.tsx
-function mr() {
+function gr() {
 	let { colorScheme: e, setColorScheme: t } = $e(), n = e === "auto" ? document.documentElement.getAttribute("data-mantine-color-scheme") ?? "light" : e;
 	return /* @__PURE__ */ m(Pe, {
-		className: pr.root,
+		className: hr.root,
 		value: n,
 		onChange: (e) => t(e),
 		"aria-label": "Colour scheme",
@@ -1589,10 +1603,10 @@ function mr() {
 }
 //#endregion
 //#region src/components/DirectionToggle.tsx
-function hr() {
+function _r() {
 	let { dir: e, setDirection: t } = Qe();
 	return /* @__PURE__ */ m(Pe, {
-		className: pr.root,
+		className: hr.root,
 		value: e,
 		onChange: (e) => t(e),
 		"aria-label": "Text direction",
@@ -1617,7 +1631,7 @@ function hr() {
 }
 //#endregion
 //#region src/components/DataState.tsx
-function gr({ rows: e = 5, cols: t = 5 }) {
+function vr({ rows: e = 5, cols: t = 5 }) {
 	return /* @__PURE__ */ h("div", {
 		role: "status",
 		"aria-busy": "true",
@@ -1642,7 +1656,7 @@ function gr({ rows: e = 5, cols: t = 5 }) {
 		})]
 	});
 }
-function _r({ title: e, description: t, action: n }) {
+function yr({ title: e, description: t, action: n }) {
 	return /* @__PURE__ */ m(te, {
 		py: "xl",
 		role: "status",
@@ -1666,7 +1680,7 @@ function _r({ title: e, description: t, action: n }) {
 		})
 	});
 }
-function vr({ title: e = "Could not load data", description: t, onRetry: r }) {
+function br({ title: e = "Could not load data", description: t, onRetry: r }) {
 	return /* @__PURE__ */ m(n, {
 		role: "alert",
 		variant: "error",
@@ -1685,7 +1699,7 @@ function vr({ title: e = "Could not load data", description: t, onRetry: r }) {
 		})
 	});
 }
-function yr({ asOf: e, delayedMinutes: t }) {
+function xr({ asOf: e, delayedMinutes: t }) {
 	return /* @__PURE__ */ h(p, {
 		size: "xs",
 		c: "var(--ask-text-tertiary)",
@@ -1697,7 +1711,7 @@ function yr({ asOf: e, delayedMinutes: t }) {
 		]
 	});
 }
-var br = {
+var Sr = {
 	scroller: "_scroller_1svnf_37",
 	stickyHeader: "_stickyHeader_1svnf_135",
 	"ask-tick-up": "_ask-tick-up_1svnf_1",
@@ -1706,20 +1720,20 @@ var br = {
 };
 //#endregion
 //#region src/components/MarketTable.tsx
-function xr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHeader: i = !1, onRetry: a }) {
-	return t === "loading" ? /* @__PURE__ */ m(gr, {
+function Cr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHeader: i = !1, onRetry: a }) {
+	return t === "loading" ? /* @__PURE__ */ m(vr, {
 		rows: 5,
 		cols: 5
-	}) : t === "error" ? /* @__PURE__ */ m(vr, {
+	}) : t === "error" ? /* @__PURE__ */ m(br, {
 		description: "The market feed did not respond. Your connection may be offline.",
 		onRetry: a
-	}) : t === "empty" || e.length === 0 ? /* @__PURE__ */ m(_r, {
+	}) : t === "empty" || e.length === 0 ? /* @__PURE__ */ m(yr, {
 		title: "No matching stocks",
 		description: "Try widening your filters, or clear the search to see the full list."
 	}) : /* @__PURE__ */ m("div", {
-		className: br.scroller,
+		className: Sr.scroller,
 		children: /* @__PURE__ */ h(f, {
-			className: [i && br.stickyHeader, r && br.stale].filter(Boolean).join(" "),
+			className: [i && Sr.stickyHeader, r && Sr.stale].filter(Boolean).join(" "),
 			children: [
 				/* @__PURE__ */ h(f.Caption, {
 					style: {
@@ -1815,7 +1829,7 @@ function xr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHea
 }
 //#endregion
 //#region src/components/PageHeading.tsx
-function Sr({ title: e, meta: t = [], centered: n = !1, children: r }) {
+function wr({ title: e, meta: t = [], centered: n = !1, children: r }) {
 	return /* @__PURE__ */ h("div", {
 		className: $.titleSection,
 		"data-centered": n || void 0,
@@ -1840,6 +1854,6 @@ function Sr({ title: e, meta: t = [], centered: n = !1, children: r }) {
 	});
 }
 //#endregion
-export { cr as AppHeader, fr as AskChart, nr as CHART_TOOLTIP_RADIUS, mr as ColorSchemeToggle, Bn as DIRECTION_GLYPH, Gn as DIRECTION_ICON, Vn as DIRECTION_LABEL, Hn as DIRECTION_TOKEN, hr as DirectionToggle, ir as EMAIL_DIRECTION, X as EMAIL_FONT_STACK, _r as EmptyState, vr as ErrorState, q as Icons, ar as Logo, or as LogoMark, xr as MarketTable, sr as NAV_ITEMS, jn as NOT_AVAILABLE, V as PRECISION, Sr as PageHeading, yr as StaleNotice, gr as TableSkeleton, Qn as areaChartOptions, Yn as assertSingleAxis, $n as barChartOptions, Y as baseChartOptions, Kn as createSeriesPalette, An as cssVariablesResolver, zn as direction, qn as directionColor, Z as emailColor, Q as emailSize, rr as emailStyle, Rn as formatChange, Nn as formatCompact, Wn as formatDate, Ln as formatMarketCap, G as formatNumber, Pn as formatPercent, Fn as formatPrice, Un as formatTime, In as formatVolume, Zn as lineChartOptions, K as makeIcon, Jn as markDefaults, tr as mirrorValueAxis, er as pieChartOptions, kn as theme, rn as tokens };
+export { ur as AppHeader, mr as AskChart, ir as CHART_TOOLTIP_RADIUS, gr as ColorSchemeToggle, Bn as DIRECTION_GLYPH, Gn as DIRECTION_ICON, Vn as DIRECTION_LABEL, Hn as DIRECTION_TOKEN, _r as DirectionToggle, or as EMAIL_DIRECTION, X as EMAIL_FONT_STACK, yr as EmptyState, br as ErrorState, q as Icons, sr as Logo, cr as LogoMark, Cr as MarketTable, lr as NAV_ITEMS, jn as NOT_AVAILABLE, V as PRECISION, wr as PageHeading, xr as StaleNotice, vr as TableSkeleton, Qn as areaChartOptions, Yn as assertSingleAxis, $n as barChartOptions, Y as baseChartOptions, Kn as createSeriesPalette, An as cssVariablesResolver, zn as direction, qn as directionColor, Z as emailColor, Q as emailSize, ar as emailStyle, Rn as formatChange, Nn as formatCompact, Wn as formatDate, Ln as formatMarketCap, G as formatNumber, Pn as formatPercent, Fn as formatPrice, Un as formatTime, In as formatVolume, Zn as lineChartOptions, K as makeIcon, Jn as markDefaults, nr as mergeChartOptions, tr as mirrorValueAxis, er as pieChartOptions, kn as theme, rn as tokens };
 
 //# sourceMappingURL=index.js.map

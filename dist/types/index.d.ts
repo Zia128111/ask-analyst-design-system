@@ -6,7 +6,7 @@ export { Icons, DIRECTION_ICON, makeIcon } from './lib/icons';
 export type { IconProps, IconSizeToken } from './lib/icons';
 export { createSeriesPalette, directionColor, markDefaults, assertSingleAxis, } from './lib/chart';
 export type { ColorMode } from './lib/chart';
-export { baseChartOptions, lineChartOptions, mirrorValueAxis, areaChartOptions, barChartOptions, pieChartOptions, CHART_TOOLTIP_RADIUS, } from './lib/googleChartTheme';
+export { baseChartOptions, lineChartOptions, mergeChartOptions, mirrorValueAxis, areaChartOptions, barChartOptions, pieChartOptions, CHART_TOOLTIP_RADIUS, } from './lib/googleChartTheme';
 export type { Scheme, Dir } from './lib/googleChartTheme';
 export { EMAIL_FONT_STACK, emailColor, emailSize, emailStyle, EMAIL_DIRECTION, } from './lib/email-tokens';
 export { AppHeader, NAV_ITEMS } from './components/AppHeader';

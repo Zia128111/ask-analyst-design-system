@@ -375,6 +375,22 @@ export declare function mirrorValueAxis<T extends {
     vAxis: object;
     chartArea: object;
 }>(options: T, dir: Dir, seriesCount: number): T;
+/**
+ * Merges caller options over themed options, ONE LEVEL DEEP.
+ *
+ * Google Charts groups most of its settings into nested objects — `hAxis`,
+ * `vAxis`, `legend`, `tooltip`. A plain spread replaces those objects whole, so
+ * a caller passing `{ hAxis: { showTextEvery: 7 } }` to set one property
+ * silently discards the themed `textStyle`, `gridlines` and `baselineColor`
+ * that were in there. The chart keeps working and the axis quietly reverts to
+ * Google's default #222 — which is invisible in dark mode, and which nobody
+ * notices until a screenshot.
+ *
+ * So a nested plain object is merged rather than replaced. Arrays are NOT:
+ * `colors` and `gridlines.count` are whole values, and half-replacing a colour
+ * array would be worse than replacing it.
+ */
+export declare function mergeChartOptions<T extends Record<string, unknown>>(base: T, extra?: Record<string, unknown>): T & Record<string, unknown>;
 /** Radius token for the HTML tooltip, exported so CSS and JS cannot drift. */
 export declare const CHART_TOOLTIP_RADIUS: "8px";
 //# sourceMappingURL=googleChartTheme.d.ts.map
