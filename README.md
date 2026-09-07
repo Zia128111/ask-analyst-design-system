@@ -8,12 +8,52 @@ in **[DESIGN-SYSTEM-v2.md](./DESIGN-SYSTEM-v2.md)**.
 
 ---
 
-## Quick start
+## Use it in a project
+
+```bash
+npm i github:Zia128111/ask-analyst-design-system
+```
+
+```tsx
+import { DirectionProvider, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import { theme, cssVariablesResolver } from '@akseer/ask-analyst-design-system';
+
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
+import '@akseer/ask-analyst-design-system/styles.css'; // MUST come after Mantine
+
+<DirectionProvider>
+  <MantineProvider theme={theme} cssVariablesResolver={cssVariablesResolver} defaultColorScheme="light">
+    <Notifications position="bottom-right" limit={3} />
+    {children}
+  </MantineProvider>
+</DirectionProvider>
+```
+
+Then import what you need — `tokens`, `Icons`, the formatters, and the
+components (`MarketTable`, `AskChart`, `PageHeading`, `AppHeader`, `Logo`,
+`EmptyState`…):
+
+```tsx
+import { Icons, formatPrice, MarketTable } from '@akseer/ask-analyst-design-system';
+```
+
+React, Mantine and `react-dom` are **peer** dependencies, so the consuming app
+owns exactly one copy of each. Self-hosted Lato ships inside the package.
+
+**Drop [CLAUDE.md](./CLAUDE.md) into any project that uses this** — it is the
+rule set Claude Code reads so the constraints are applied without being
+restated each session.
+
+## Develop the design system itself
 
 ```bash
 npm install
-npm run dev      # docs page at http://localhost:5173
-npm run verify   # all six static suites
+npm run dev       # living documentation at http://localhost:5173
+npm run verify    # all six static suites
+npm run build:lib # produce dist/ (also runs automatically on install)
 ```
 
 The dev server serves a **living documentation page** showing every token and

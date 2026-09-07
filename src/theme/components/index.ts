@@ -60,6 +60,7 @@ import {
   Tooltip,
   Tree,
 } from '@mantine/core';
+import type { MantineThemeComponents } from '@mantine/core';
 import { DateInput, DatePicker, DatePickerInput, MonthPickerInput } from '@mantine/dates';
 
 import actionIconClasses from './ActionIcon.module.css';
@@ -129,7 +130,7 @@ const calendarAriaLabels = {
   yearLevelControl: 'Change year',
 };
 
-export const components = {
+export const components: MantineThemeComponents = {
   Button: Button.extend({
     classNames: buttonClasses,
     defaultProps: { variant: 'default' },

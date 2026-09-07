@@ -1,0 +1,19 @@
+/* ============================================================================
+ * ASK ANALYST DESIGN SYSTEM — stylesheet entry
+ * ============================================================================
+ * Consumers import this once:
+ *
+ *   import '@mantine/core/styles.css';                        // Mantine first
+ *   import '@mantine/dates/styles.css';
+ *   import '@mantine/notifications/styles.css';
+ *   import '@akseer/ask-analyst-design-system/styles.css';    // then ours
+ *
+ * Order matters. Our layer overrides Mantine defaults (focus rings, touch
+ * targets, table rules); loading it first means Mantine wins and the
+ * overrides silently vanish.
+ * ========================================================================= */
+
+@import './theme/fonts.css';    /* self-hosted Lato — Google Fonts omits 500/600 */
+@import './index.css';          /* focus ring, touch targets, tabular figures, RTL */
+@import './theme/density.css';  /* comfortable / compact / condensed */
+@import './theme/print.css';    /* research reports and letterheads */
