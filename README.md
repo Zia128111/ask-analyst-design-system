@@ -101,6 +101,13 @@ CI fails on each of these.
 Complete: tokens, 60 components with zero gaps, charts, icons, brand assets,
 RTL, print, email, density, page compositions.
 
+**Figma:** the system is ported to the Ask Analyst design file — 142 variables
+across 3 collections, 17 component sets / 68 variants, and all 28 sanctioned
+icons as live instances of the Tabler Icons Community library. Two filled carets
+are local backfills because that library version doesn't ship them; see
+§8quinquies.
+
 Not yet done — see §12 of the spec: the package is not distributable
 (`private: true`, no `exports`), locale is hardcoded to `en-US`, there are no
-component or visual-regression tests, and there is no Figma parity.
+component or visual-regression tests, Code Connect needs a Figma Organization
+plan, and `Alert` tones carry no icon in either code or Figma.

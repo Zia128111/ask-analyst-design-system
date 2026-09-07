@@ -498,6 +498,45 @@ The one sanctioned exception is `DIRECTION_GLYPH` in `lib/format.ts` — text
 triangles for CSV export and the plain-text newsletter, where an SVG cannot go.
 Those lines carry an explicit `icon-ok` marker.
 
+### Figma parity — the icon set is live, not drawn
+
+All 28 sanctioned glyphs exist in the Figma file as **instances of the official
+Tabler Icons Community library**, so a library update propagates to the design
+file. Two are deliberate local components:
+
+| Glyph | Why local |
+|---|---|
+| `caret-up-filled` | The subscribed Tabler library version predates Tabler's filled carets — it ships outline `caret-up`/`caret-down` only, and the nearest filled shape is `triangle-inverted-filled`. |
+| `caret-down-filled` | Same. |
+
+Both were rebuilt from the published path data in `@tabler/icons-react` v3.46.0
+rather than redrawn by eye, so the Figma geometry is the geometry the app
+renders. Code keeps the **filled** carets because a solid triangle stays legible
+at 14px where an outline caret does not, and direction is the market table's
+primary signal. **Delete both when the library is updated**, and swap the
+instances back.
+
+Two Figma-specific gotchas, both of which cost a debugging pass:
+
+- **Figma scales stroke weight when an instance is resized; Tabler in code does
+  not.** A 24px source icon dropped to 48px renders a ~4px stroke, against the
+  1.5 the token specifies. Every icon instance therefore has its `strokeWeight`
+  pinned explicitly after resizing.
+- **An `INSTANCE_SWAP` property default takes the *imported component's node
+  id*, not the library component key.** Passing the key fails with
+  "Property value is incompatible with component property type".
+
+### Known gap: Alert tones carry no icon
+
+`Alert` distinguishes its four tones by colour and title text alone — Mantine
+renders an icon only when one is passed, and neither the theme nor the app
+passes one. This is consistent between code and Figma, and it does not fail
+1.4.1 because the title carries the meaning ("Feed unavailable", "Delayed
+data"). It is nonetheless below the industry norm: `info-circle` /
+`circle-check` / `alert-triangle` / `circle-x` per tone would be an improvement,
+and would have to land in **both** code and Figma to preserve parity. Not done,
+because it changes rendered product output rather than documentation.
+
 ---
 
 ## 8sexies. Output targets beyond the screen
