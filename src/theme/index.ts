@@ -138,6 +138,10 @@ export const cssVariablesResolver: CSSVariablesResolver = () => {
   for (const [k, v] of Object.entries(t.lineHeight)) scalars[`--ask-leading-${k}`] = v;
   for (const [k, v] of Object.entries(t.container)) scalars[`--ask-container-${k}`] = v;
 
+  scalars['--ask-grid-columns'] = String(t.grid.columns);
+  scalars['--ask-grid-column'] = t.grid.columnWidth;
+  scalars['--ask-grid-gutter'] = t.grid.gutter;
+
   scalars['--ask-focus-width'] = t.focusRing.width;
   scalars['--ask-focus-offset'] = t.focusRing.offset;
   scalars['--ask-touch-target'] = t.minTouchTarget;

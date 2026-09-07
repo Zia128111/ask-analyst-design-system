@@ -205,7 +205,14 @@ export declare const container: {
      * they answer two different questions.
      */
     readonly wide: "1600px";
+    /** The layout grid's own width. See `grid` below — the two must agree. */
+    readonly grid: "1300px";
     readonly prose: "68ch";
+};
+export declare const grid: {
+    readonly columns: 12;
+    readonly columnWidth: "90px";
+    readonly gutter: "20px";
 };
 /** Focus ring — one definition, consumed by every interactive component. */
 export declare const focusRing: {

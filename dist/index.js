@@ -370,26 +370,27 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 		cite: _.blockquoteCite
 	} })
 }, rn = /* @__PURE__ */ Rt({
-	ICON_RULES: () => xn,
+	ICON_RULES: () => Sn,
 	amber: () => k,
 	blue: () => w,
 	borderWidth: () => P,
-	breakpoint: () => L,
+	breakpoint: () => I,
 	chartCategorical: () => R,
-	chartDiverging: () => vn,
+	chartDiverging: () => yn,
 	chartMark: () => B,
-	chartSequential: () => _n,
+	chartSequential: () => vn,
 	chartSurface: () => z,
-	container: () => hn,
+	container: () => gn,
 	controlHeight: () => un,
-	duration: () => I,
-	easing: () => pn,
-	focusRing: () => gn,
+	duration: () => pn,
+	easing: () => mn,
+	focusRing: () => _n,
 	fontSize: () => A,
 	fontWeight: () => sn,
 	green: () => D,
-	iconSize: () => yn,
-	iconStroke: () => bn,
+	grid: () => L,
+	iconSize: () => bn,
+	iconStroke: () => xn,
 	ink: () => E,
 	letterSpacing: () => cn,
 	lineHeight: () => j,
@@ -403,7 +404,7 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	semanticLight: () => an,
 	shadow: () => F,
 	space: () => M,
-	zIndex: () => mn
+	zIndex: () => hn
 }), w = [
 	"#f0f7ff",
 	"#e0efff",
@@ -594,16 +595,16 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	sm: "32px",
 	md: "40px",
 	lg: "48px"
-}, dn = "44px", fn = "24px", I = {
+}, dn = "44px", fn = "24px", pn = {
 	instant: "0ms",
 	fast: "120ms",
 	base: "200ms",
 	slow: "320ms"
-}, pn = {
+}, mn = {
 	standard: "cubic-bezier(0.2, 0, 0, 1)",
 	decelerate: "cubic-bezier(0, 0, 0, 1)",
 	accelerate: "cubic-bezier(0.3, 0, 1, 1)"
-}, mn = {
+}, hn = {
 	base: 0,
 	raised: 10,
 	sticky: 1100,
@@ -612,21 +613,26 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	popover: 1400,
 	toast: 1500,
 	tooltip: 1600
-}, L = {
+}, I = {
 	sm: "640px",
 	md: "768px",
 	lg: "1024px",
 	xl: "1280px",
 	"2xl": "1536px"
-}, hn = {
+}, gn = {
 	sm: "640px",
 	md: "768px",
 	lg: "1024px",
 	xl: "1280px",
 	content: "1280px",
 	wide: "1600px",
+	grid: "1300px",
 	prose: "68ch"
-}, gn = {
+}, L = {
+	columns: 12,
+	columnWidth: "90px",
+	gutter: "20px"
+}, _n = {
 	width: P.thick,
 	offset: "2px"
 }, R = [
@@ -638,12 +644,12 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	"#0891b2",
 	"#db2777",
 	"#4d7c0f"
-], _n = [
+], vn = [
 	"#5cb0ff",
 	"#1485ff",
 	"#0759b0",
 	"#044386"
-], vn = {
+], yn = {
 	market: {
 		negative: [
 			"#f87171",
@@ -697,29 +703,29 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	barRadius: 4,
 	seriesGap: 2,
 	areaOpacity: .12
-}, yn = {
+}, bn = {
 	xs: 14,
 	sm: 16,
 	md: 20,
 	lg: 24,
 	xl: 32,
 	"2xl": 48
-}, bn = {
+}, xn = {
 	default: 1.5,
 	small: 1.75
-}, xn = {
+}, Sn = {
 	noEmoji: !0,
 	decorativeIsAriaHidden: !0,
 	iconOnlyNeedsLabel: !0
-}, Sn = w, Cn = T, wn = D, Tn = O, En = k, Dn = { ...an }, On = { ...on }, kn = Ze({
+}, Cn = w, wn = T, Tn = D, En = O, Dn = k, On = { ...an }, kn = { ...on }, An = Ze({
 	primaryColor: "brand",
 	primaryShade: 6,
 	colors: {
-		brand: Sn,
-		gray: Cn,
-		positive: wn,
-		negative: Tn,
-		caution: En
+		brand: Cn,
+		gray: wn,
+		positive: Tn,
+		negative: En,
+		caution: Dn
 	},
 	fontFamily: "'Lato', sans-serif",
 	fontFamilyMonospace: "ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace",
@@ -795,11 +801,11 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 		xl: F.xl
 	},
 	breakpoints: {
-		xs: L.sm,
-		sm: L.md,
-		md: L.lg,
-		lg: L.xl,
-		xl: L["2xl"]
+		xs: I.sm,
+		sm: I.md,
+		md: I.lg,
+		lg: I.xl,
+		xl: I["2xl"]
 	},
 	black: E,
 	white: "#ffffff",
@@ -810,36 +816,36 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 		radius: N,
 		borderWidth: P,
 		controlHeight: un,
-		duration: I,
-		easing: pn,
-		zIndex: mn,
-		container: hn,
+		duration: pn,
+		easing: mn,
+		zIndex: hn,
+		container: gn,
 		fontWeight: sn,
 		letterSpacing: cn,
 		minTouchTarget: dn
 	}
-}), An = () => {
+}), jn = () => {
 	let e = {};
 	for (let [t, n] of Object.entries(M)) e[`--ask-space-${t}`] = n;
 	for (let [t, n] of Object.entries(N)) e[`--ask-radius-${t}`] = n;
 	for (let [t, n] of Object.entries(P)) e[`--ask-border-${t}`] = n;
 	for (let [t, n] of Object.entries(un)) e[`--ask-control-${t}`] = n;
-	for (let [t, n] of Object.entries(I)) e[`--ask-duration-${t}`] = n;
-	for (let [t, n] of Object.entries(pn)) e[`--ask-ease-${t}`] = n;
-	for (let [t, n] of Object.entries(mn)) e[`--ask-z-${t}`] = String(n);
+	for (let [t, n] of Object.entries(pn)) e[`--ask-duration-${t}`] = n;
+	for (let [t, n] of Object.entries(mn)) e[`--ask-ease-${t}`] = n;
+	for (let [t, n] of Object.entries(hn)) e[`--ask-z-${t}`] = String(n);
 	for (let [t, n] of Object.entries(A)) e[`--ask-font-${t}`] = n;
 	for (let [t, n] of Object.entries(j)) e[`--ask-leading-${t}`] = n;
-	for (let [t, n] of Object.entries(hn)) e[`--ask-container-${t}`] = n;
-	e["--ask-focus-width"] = gn.width, e["--ask-focus-offset"] = gn.offset, e["--ask-touch-target"] = dn;
+	for (let [t, n] of Object.entries(gn)) e[`--ask-container-${t}`] = n;
+	e["--ask-grid-columns"] = String(L.columns), e["--ask-grid-column"] = L.columnWidth, e["--ask-grid-gutter"] = L.gutter, e["--ask-focus-width"] = _n.width, e["--ask-focus-offset"] = _n.offset, e["--ask-touch-target"] = dn;
 	let t = (e) => Object.fromEntries(Object.entries(e).map(([e, t]) => [`--ask-${e}`, t])), n = (e) => Object.fromEntries(Object.entries(z[e]).map(([e, t]) => [`--ask-chart-${e.replace(/[A-Z]/g, (e) => "-" + e.toLowerCase())}`, t]));
 	return {
 		variables: e,
 		light: {
-			...t(Dn),
+			...t(On),
 			...n("light")
 		},
 		dark: {
-			...t(On),
+			...t(kn),
 			...n("dark")
 		}
 	};
@@ -852,7 +858,7 @@ var Lt = Object.defineProperty, Rt = (e, t) => {
 	volume: 0,
 	shares: 0,
 	currency: 2
-}, jn = "—", H = "en-US", U = (e) => e == null || typeof e == "number" && !Number.isFinite(e);
+}, Mn = "—", H = "en-US", U = (e) => e == null || typeof e == "number" && !Number.isFinite(e);
 function W(e, t, n) {
 	return t ? n === "parens" ? `(${e})` : `-${e}` : e;
 }
@@ -864,7 +870,7 @@ function G(e, t = {}) {
 		maximumFractionDigits: n
 	}).format(Math.abs(e)), e < 0, r);
 }
-var Mn = [
+var Nn = [
 	{
 		limit: 0xe8d4a51000,
 		suffix: "T"
@@ -882,11 +888,11 @@ var Mn = [
 		suffix: "K"
 	}
 ];
-function Nn(e, t = {}) {
+function Pn(e, t = {}) {
 	if (U(e)) return "—";
 	let { decimals: n = 2, threshold: r = 1e6, signStyle: i = "minus" } = t, a = Math.abs(e);
 	if (a < r) return W(new Intl.NumberFormat(H, { maximumFractionDigits: 0 }).format(a), e < 0, i);
-	let o = Mn.find((e) => a >= e.limit);
+	let o = Nn.find((e) => a >= e.limit);
 	if (!o) return G(e, {
 		decimals: n,
 		signStyle: i
@@ -897,7 +903,7 @@ function Nn(e, t = {}) {
 		maximumFractionDigits: n
 	}).format(s)}${o.suffix}`, e < 0, i);
 }
-function Pn(e, t = {}) {
+function Fn(e, t = {}) {
 	if (U(e)) return "—";
 	let { decimals: n = V.percent, signStyle: r = "parens", showPlus: i = !1 } = t, a = new Intl.NumberFormat(H, {
 		minimumFractionDigits: n,
@@ -905,33 +911,33 @@ function Pn(e, t = {}) {
 	}).format(Math.abs(e));
 	return e > 0 && i ? `+${a}%` : `${W(a, e < 0, r)}%`;
 }
-var Fn = (e) => G(e, { decimals: V.price }), In = (e) => Nn(e, {
+var In = (e) => G(e, { decimals: V.price }), Ln = (e) => Pn(e, {
 	decimals: V.price,
 	threshold: 1e6
-}), Ln = (e) => U(e) ? "—" : `Rs ${Nn(e, {
+}), Rn = (e) => U(e) ? "—" : `Rs ${Pn(e, {
 	decimals: 2,
 	threshold: 1e6
-})}`, Rn = (e) => G(e, {
+})}`, zn = (e) => G(e, {
 	decimals: V.change,
 	signStyle: "minus"
 });
-function zn(e) {
+function Bn(e) {
 	return U(e) || e === 0 ? "flat" : e > 0 ? "up" : "down";
 }
-var Bn = {
+var Vn = {
 	up: "▲",
 	down: "▼",
 	flat: "–"
-}, Vn = {
+}, Hn = {
 	up: "up",
 	down: "down",
 	flat: "unchanged"
-}, Hn = {
+}, Un = {
 	up: "var(--ask-positive-text)",
 	down: "var(--ask-negative-text)",
 	flat: "var(--ask-text-tertiary)"
 };
-function Un(e, t = "Asia/Karachi") {
+function Wn(e, t = "Asia/Karachi") {
 	return e ? new Intl.DateTimeFormat(H, {
 		hour: "2-digit",
 		minute: "2-digit",
@@ -939,7 +945,7 @@ function Un(e, t = "Asia/Karachi") {
 		timeZoneName: "short"
 	}).format(e) : "—";
 }
-function Wn(e, t = "Asia/Karachi") {
+function Gn(e, t = "Asia/Karachi") {
 	return e ? new Intl.DateTimeFormat(H, {
 		day: "numeric",
 		month: "short",
@@ -951,10 +957,10 @@ function Wn(e, t = "Asia/Karachi") {
 //#region src/lib/icons.tsx
 function K(e, t) {
 	function n({ size: t = "sm", label: n, color: r, className: i }) {
-		let a = yn[t];
+		let a = bn[t];
 		return /* @__PURE__ */ m(e, {
 			size: a,
-			stroke: a <= yn.xs ? bn.small : bn.default,
+			stroke: a <= bn.xs ? xn.small : xn.default,
 			color: r ?? "currentColor",
 			className: i,
 			"aria-hidden": !n || void 0,
@@ -994,14 +1000,14 @@ var q = {
 	calendar: K(st, "IconCalendar"),
 	watch: K(gt, "IconWatch"),
 	alerts: K(ot, "IconAlerts")
-}, Gn = {
+}, Kn = {
 	up: q.up,
 	down: q.down,
 	flat: q.flat
 };
 //#endregion
 //#region src/lib/chart.ts
-function Kn(e) {
+function qn(e) {
 	let t = new Map(e.map((e, t) => [e, t]));
 	return {
 		colorFor(e) {
@@ -1014,24 +1020,24 @@ function Kn(e) {
 		max: R.length
 	};
 }
-function qn(e, t = "market") {
+function Jn(e, t = "market") {
 	if (e == null || e === 0) return "var(--ask-text-tertiary)";
-	let n = vn[t];
+	let n = yn[t];
 	return e > 0 ? n.positive[2] : n.negative[2];
 }
-var Jn = {
+var Yn = {
 	strokeWidth: B.lineWidth,
 	dotSize: B.markerSize,
 	fillOpacity: B.areaOpacity,
 	barRadius: B.barRadius
 };
-function Yn(e) {
+function Xn(e) {
 	let t = new Set(e);
 	if (t.size > 1) throw Error(`Dual-axis chart refused: series span ${t.size} units (${[...t].join(", ")}). Use small multiples, or index the series to a common base.`);
 }
 //#endregion
 //#region src/lib/googleChartTheme.ts
-function Xn({ gutter: e = 64, edge: t = 16 } = {}) {
+function Zn({ gutter: e = 64, edge: t = 16 } = {}) {
 	return {
 		left: e,
 		right: t,
@@ -1049,7 +1055,7 @@ function Y(e, t = "ltr") {
 		colors: [...R],
 		fontName: "Lato",
 		fontSize: J(A["2xs"]),
-		chartArea: Xn(),
+		chartArea: Zn(),
 		hAxis: {
 			textStyle: {
 				color: n.axisLabel,
@@ -1088,7 +1094,7 @@ function Y(e, t = "ltr") {
 		animation: { duration: 0 }
 	};
 }
-function Zn(e, t = "ltr", n = {}) {
+function Qn(e, t = "ltr", n = {}) {
 	let r = Y(e, t);
 	return {
 		...r,
@@ -1105,13 +1111,13 @@ function Zn(e, t = "ltr", n = {}) {
 		}
 	};
 }
-function Qn(e, t = "ltr") {
+function $n(e, t = "ltr") {
 	return {
-		...Zn(e, t),
+		...Qn(e, t),
 		areaOpacity: B.areaOpacity
 	};
 }
-function $n(e, t = "ltr") {
+function er(e, t = "ltr") {
 	let n = Y(e, t);
 	return {
 		...n,
@@ -1126,7 +1132,7 @@ function $n(e, t = "ltr") {
 		}
 	};
 }
-function er(e, t = "ltr", n = !0) {
+function tr(e, t = "ltr", n = !0) {
 	let r = Y(e, t);
 	return {
 		...r,
@@ -1138,7 +1144,7 @@ function er(e, t = "ltr", n = !0) {
 			position: t === "rtl" ? "left" : "right"
 		},
 		chartArea: {
-			...Xn({
+			...Zn({
 				gutter: 8,
 				edge: 8
 			}),
@@ -1147,7 +1153,7 @@ function er(e, t = "ltr", n = !0) {
 		}
 	};
 }
-function tr(e, t, n) {
+function nr(e, t, n) {
 	if (t !== "rtl" || n < 1) return e;
 	let r = {};
 	for (let e = 0; e < n; e += 1) r[e] = { targetAxisIndex: 1 };
@@ -1170,22 +1176,22 @@ function tr(e, t, n) {
 		}
 	};
 }
-function nr(e, t) {
+function rr(e, t) {
 	if (!t) return e;
 	let n = { ...e };
 	for (let [e, r] of Object.entries(t)) {
 		let t = n[e];
-		n[e] = rr(t) && rr(r) ? {
+		n[e] = ir(t) && ir(r) ? {
 			...t,
 			...r
 		} : r;
 	}
 	return n;
 }
-function rr(e) {
+function ir(e) {
 	return typeof e == "object" && !!e && !Array.isArray(e);
 }
-var ir = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
+var ar = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 	brand: w[6],
 	brandTint: w[0],
 	link: w[7],
@@ -1210,7 +1216,7 @@ var ir = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 	cellPaddingY: 8,
 	cellPaddingX: 12,
 	contentWidth: 600
-}, ar = {
+}, or = {
 	body: `margin:0;padding:0;background-color:${Z.surface};font-family:${X};font-size:${Q.bodyText}px;line-height:${Q.lineHeightBody}px;color:${Z.textPrimary};`,
 	container: `width:100%;max-width:${Q.contentWidth}px;margin:0 auto;`,
 	h1: `margin:0 0 16px;font-family:${X};font-size:${Q.h1}px;line-height:34px;font-weight:700;color:${Z.textPrimary};`,
@@ -1224,7 +1230,7 @@ var ir = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 	negative: `color:${Z.negative};font-weight:700;`,
 	button: `display:inline-block;padding:12px 20px;background-color:${Z.brand};border-radius:8px;color:${Z.onBrand};font-size:14px;font-weight:700;text-decoration:none;`,
 	meta: `font-size:${Q.label}px;color:${Z.textTertiary};`
-}, or = {
+}, sr = {
 	up: {
 		glyph: "▲",
 		word: "up",
@@ -1243,7 +1249,7 @@ var ir = N.md, X = "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif", Z = {
 };
 //#endregion
 //#region src/components/Logo.tsx
-function sr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
+function cr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 	let r = Nt();
 	return /* @__PURE__ */ h("svg", {
 		viewBox: "0 0 273 105",
@@ -1329,7 +1335,7 @@ function sr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 		]
 	});
 }
-function cr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
+function lr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 	let r = Nt();
 	return /* @__PURE__ */ h("svg", {
 		viewBox: "0 0 88 105",
@@ -1375,17 +1381,17 @@ function cr({ height: e = 32, title: t = "Ask Analyst", className: n }) {
 	});
 }
 var $ = {
-	skipLink: "_skipLink_1g2tx_47",
-	header: "_header_1g2tx_107",
-	headerInner: "_headerInner_1g2tx_125",
-	nav: "_nav_1g2tx_189",
-	burger: "_burger_1g2tx_211",
-	navItem: "_navItem_1g2tx_221",
-	titleSection: "_titleSection_1g2tx_333",
-	title: "_title_1g2tx_333",
-	meta: "_meta_1g2tx_365",
-	metaDot: "_metaDot_1g2tx_385"
-}, lr = [
+	skipLink: "_skipLink_b57eq_47",
+	header: "_header_b57eq_107",
+	headerInner: "_headerInner_b57eq_125",
+	nav: "_nav_b57eq_209",
+	burger: "_burger_b57eq_231",
+	navItem: "_navItem_b57eq_241",
+	titleSection: "_titleSection_b57eq_353",
+	title: "_title_b57eq_353",
+	meta: "_meta_b57eq_385",
+	metaDot: "_metaDot_b57eq_405"
+}, ur = [
 	{
 		label: "Market",
 		href: "#market"
@@ -1423,7 +1429,7 @@ var $ = {
 		href: "#research"
 	}
 ];
-function ur({ items: e = lr, activeHref: t, mainId: n = "main", brand: r, actions: i, width: a = "content" }) {
+function dr({ items: e = ur, activeHref: t, mainId: n = "main", brand: r, actions: i, width: a = "content" }) {
 	let [o, s] = Ft(!1), c = (e, n) => /* @__PURE__ */ m("a", {
 		href: e.href,
 		className: $.navItem,
@@ -1446,7 +1452,7 @@ function ur({ items: e = lr, activeHref: t, mainId: n = "main", brand: r, action
 					/* @__PURE__ */ m(d, {
 						gap: "sm",
 						wrap: "nowrap",
-						children: r ?? /* @__PURE__ */ m(sr, {
+						children: r ?? /* @__PURE__ */ m(cr, {
 							height: 28,
 							title: "Ask Analyst"
 						})
@@ -1489,34 +1495,34 @@ function ur({ items: e = lr, activeHref: t, mainId: n = "main", brand: r, action
 }
 //#endregion
 //#region src/components/AskChart.tsx
-var dr = {
+var fr = {
 	Line: "LineChart",
 	Area: "AreaChart",
 	Bar: "BarChart",
 	Column: "ColumnChart",
 	Pie: "PieChart",
 	Donut: "PieChart"
-}, fr = /* @__PURE__ */ new Set([
+}, pr = /* @__PURE__ */ new Set([
 	"Line",
 	"Area",
 	"Column"
 ]);
-function pr(e, t, n) {
+function mr(e, t, n) {
 	switch (e) {
-		case "Line": return Zn(t, n);
-		case "Area": return Qn(t, n);
+		case "Line": return Qn(t, n);
+		case "Area": return $n(t, n);
 		case "Bar":
-		case "Column": return $n(t, n);
-		case "Pie": return er(t, n, !1);
-		case "Donut": return er(t, n, !0);
+		case "Column": return er(t, n);
+		case "Pie": return tr(t, n, !1);
+		case "Donut": return tr(t, n, !0);
 		default: return Y(t, n);
 	}
 }
-function mr({ kind: e, data: t, title: n, description: r, height: i = 240, seriesKeys: a, options: o }) {
+function hr({ kind: e, data: t, title: n, description: r, height: i = 240, seriesKeys: a, options: o }) {
 	let { colorScheme: s } = $e(), { dir: c } = Qe(), l = s === "dark" ? "dark" : s === "light" ? "light" : document.documentElement.getAttribute("data-mantine-color-scheme") ?? "light", u = Math.max(0, (t[0]?.length ?? 1) - 1), ee = Pt(() => {
-		let t = pr(e, l, c), n = a ? a.map((e) => Kn(a).colorFor(e)) : t.colors;
-		return nr({
-			...fr.has(e) ? tr(t, c, u) : t,
+		let t = mr(e, l, c), n = a ? a.map((e) => qn(a).colorFor(e)) : t.colors;
+		return rr({
+			...pr.has(e) ? nr(t, c, u) : t,
 			colors: n
 		}, o);
 	}, [
@@ -1544,7 +1550,7 @@ function mr({ kind: e, data: t, title: n, description: r, height: i = 240, serie
 				"aria-hidden": "true",
 				className: "ask-chart-frame",
 				children: /* @__PURE__ */ m(It, {
-					chartType: dr[e],
+					chartType: fr[e],
 					data: t,
 					options: ee,
 					width: "100%",
@@ -1572,13 +1578,13 @@ function mr({ kind: e, data: t, title: n, description: r, height: i = 240, serie
 		]
 	});
 }
-var hr = { root: "_root_rwkhr_27" };
+var gr = { root: "_root_rwkhr_27" };
 //#endregion
 //#region src/components/ColorSchemeToggle.tsx
-function gr() {
+function _r() {
 	let { colorScheme: e, setColorScheme: t } = $e(), n = e === "auto" ? document.documentElement.getAttribute("data-mantine-color-scheme") ?? "light" : e;
 	return /* @__PURE__ */ m(Pe, {
-		className: hr.root,
+		className: gr.root,
 		value: n,
 		onChange: (e) => t(e),
 		"aria-label": "Colour scheme",
@@ -1603,10 +1609,10 @@ function gr() {
 }
 //#endregion
 //#region src/components/DirectionToggle.tsx
-function _r() {
+function vr() {
 	let { dir: e, setDirection: t } = Qe();
 	return /* @__PURE__ */ m(Pe, {
-		className: hr.root,
+		className: gr.root,
 		value: e,
 		onChange: (e) => t(e),
 		"aria-label": "Text direction",
@@ -1631,7 +1637,7 @@ function _r() {
 }
 //#endregion
 //#region src/components/DataState.tsx
-function vr({ rows: e = 5, cols: t = 5 }) {
+function yr({ rows: e = 5, cols: t = 5 }) {
 	return /* @__PURE__ */ h("div", {
 		role: "status",
 		"aria-busy": "true",
@@ -1656,7 +1662,7 @@ function vr({ rows: e = 5, cols: t = 5 }) {
 		})]
 	});
 }
-function yr({ title: e, description: t, action: n }) {
+function br({ title: e, description: t, action: n }) {
 	return /* @__PURE__ */ m(te, {
 		py: "xl",
 		role: "status",
@@ -1680,7 +1686,7 @@ function yr({ title: e, description: t, action: n }) {
 		})
 	});
 }
-function br({ title: e = "Could not load data", description: t, onRetry: r }) {
+function xr({ title: e = "Could not load data", description: t, onRetry: r }) {
 	return /* @__PURE__ */ m(n, {
 		role: "alert",
 		variant: "error",
@@ -1699,7 +1705,7 @@ function br({ title: e = "Could not load data", description: t, onRetry: r }) {
 		})
 	});
 }
-function xr({ asOf: e, delayedMinutes: t }) {
+function Sr({ asOf: e, delayedMinutes: t }) {
 	return /* @__PURE__ */ h(p, {
 		size: "xs",
 		c: "var(--ask-text-tertiary)",
@@ -1711,29 +1717,29 @@ function xr({ asOf: e, delayedMinutes: t }) {
 		]
 	});
 }
-var Sr = {
-	scroller: "_scroller_1svnf_37",
-	stickyHeader: "_stickyHeader_1svnf_135",
-	"ask-tick-up": "_ask-tick-up_1svnf_1",
-	"ask-tick-down": "_ask-tick-down_1svnf_1",
-	stale: "_stale_1svnf_265"
+var Cr = {
+	scroller: "_scroller_3bdgz_37",
+	stickyHeader: "_stickyHeader_3bdgz_145",
+	"ask-tick-up": "_ask-tick-up_3bdgz_1",
+	"ask-tick-down": "_ask-tick-down_3bdgz_1",
+	stale: "_stale_3bdgz_313"
 };
 //#endregion
 //#region src/components/MarketTable.tsx
-function Cr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHeader: i = !1, onRetry: a }) {
-	return t === "loading" ? /* @__PURE__ */ m(vr, {
+function wr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHeader: i = !1, onRetry: a }) {
+	return t === "loading" ? /* @__PURE__ */ m(yr, {
 		rows: 5,
 		cols: 5
-	}) : t === "error" ? /* @__PURE__ */ m(br, {
+	}) : t === "error" ? /* @__PURE__ */ m(xr, {
 		description: "The market feed did not respond. Your connection may be offline.",
 		onRetry: a
-	}) : t === "empty" || e.length === 0 ? /* @__PURE__ */ m(yr, {
+	}) : t === "empty" || e.length === 0 ? /* @__PURE__ */ m(br, {
 		title: "No matching stocks",
 		description: "Try widening your filters, or clear the search to see the full list."
 	}) : /* @__PURE__ */ m("div", {
-		className: Sr.scroller,
+		className: Cr.scroller,
 		children: /* @__PURE__ */ h(f, {
-			className: [i && Sr.stickyHeader, r && Sr.stale].filter(Boolean).join(" "),
+			className: [i && Cr.stickyHeader, r && Cr.stale].filter(Boolean).join(" "),
 			children: [
 				/* @__PURE__ */ h(f.Caption, {
 					style: {
@@ -1777,7 +1783,7 @@ function Cr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHea
 					})
 				] }) }),
 				/* @__PURE__ */ m(f.Tbody, { children: e.map((e) => {
-					let t = zn(e.changePct), n = Hn[t], r = Gn[t];
+					let t = Bn(e.changePct), n = Un[t], r = Kn[t];
 					return /* @__PURE__ */ h(f.Tr, { children: [
 						/* @__PURE__ */ m(f.Th, {
 							scope: "row",
@@ -1788,13 +1794,13 @@ function Cr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHea
 							"data-numeric": !0,
 							"data-priority": "1",
 							"data-tick": e.tick,
-							children: Fn(e.price)
+							children: In(e.price)
 						}),
 						/* @__PURE__ */ m(f.Td, {
 							"data-numeric": !0,
 							"data-priority": "2",
 							style: { color: n },
-							children: Rn(e.change)
+							children: zn(e.change)
 						}),
 						/* @__PURE__ */ m(f.Td, {
 							"data-numeric": !0,
@@ -1810,16 +1816,16 @@ function Cr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHea
 									/* @__PURE__ */ m(r, { size: "xs" }),
 									/* @__PURE__ */ h("span", {
 										className: "sr-only",
-										children: [Vn[t], " "]
+										children: [Hn[t], " "]
 									}),
-									Pn(e.changePct)
+									Fn(e.changePct)
 								]
 							})
 						}),
 						/* @__PURE__ */ m(f.Td, {
 							"data-numeric": !0,
 							"data-priority": "3",
-							children: In(e.volume)
+							children: Ln(e.volume)
 						})
 					] }, e.symbol);
 				}) })
@@ -1829,7 +1835,7 @@ function Cr({ rows: e, status: t = "ready", caption: n, stale: r = !1, stickyHea
 }
 //#endregion
 //#region src/components/PageHeading.tsx
-function wr({ title: e, meta: t = [], centered: n = !1, children: r }) {
+function Tr({ title: e, meta: t = [], centered: n = !1, children: r }) {
 	return /* @__PURE__ */ h("div", {
 		className: $.titleSection,
 		"data-centered": n || void 0,
@@ -1854,6 +1860,6 @@ function wr({ title: e, meta: t = [], centered: n = !1, children: r }) {
 	});
 }
 //#endregion
-export { ur as AppHeader, mr as AskChart, ir as CHART_TOOLTIP_RADIUS, gr as ColorSchemeToggle, Bn as DIRECTION_GLYPH, Gn as DIRECTION_ICON, Vn as DIRECTION_LABEL, Hn as DIRECTION_TOKEN, _r as DirectionToggle, or as EMAIL_DIRECTION, X as EMAIL_FONT_STACK, yr as EmptyState, br as ErrorState, q as Icons, sr as Logo, cr as LogoMark, Cr as MarketTable, lr as NAV_ITEMS, jn as NOT_AVAILABLE, V as PRECISION, wr as PageHeading, xr as StaleNotice, vr as TableSkeleton, Qn as areaChartOptions, Yn as assertSingleAxis, $n as barChartOptions, Y as baseChartOptions, Kn as createSeriesPalette, An as cssVariablesResolver, zn as direction, qn as directionColor, Z as emailColor, Q as emailSize, ar as emailStyle, Rn as formatChange, Nn as formatCompact, Wn as formatDate, Ln as formatMarketCap, G as formatNumber, Pn as formatPercent, Fn as formatPrice, Un as formatTime, In as formatVolume, Zn as lineChartOptions, K as makeIcon, Jn as markDefaults, nr as mergeChartOptions, tr as mirrorValueAxis, er as pieChartOptions, kn as theme, rn as tokens };
+export { dr as AppHeader, hr as AskChart, ar as CHART_TOOLTIP_RADIUS, _r as ColorSchemeToggle, Vn as DIRECTION_GLYPH, Kn as DIRECTION_ICON, Hn as DIRECTION_LABEL, Un as DIRECTION_TOKEN, vr as DirectionToggle, sr as EMAIL_DIRECTION, X as EMAIL_FONT_STACK, br as EmptyState, xr as ErrorState, q as Icons, cr as Logo, lr as LogoMark, wr as MarketTable, ur as NAV_ITEMS, Mn as NOT_AVAILABLE, V as PRECISION, Tr as PageHeading, Sr as StaleNotice, yr as TableSkeleton, $n as areaChartOptions, Xn as assertSingleAxis, er as barChartOptions, Y as baseChartOptions, qn as createSeriesPalette, jn as cssVariablesResolver, Bn as direction, Jn as directionColor, Z as emailColor, Q as emailSize, or as emailStyle, zn as formatChange, Pn as formatCompact, Gn as formatDate, Rn as formatMarketCap, G as formatNumber, Fn as formatPercent, In as formatPrice, Wn as formatTime, Ln as formatVolume, Qn as lineChartOptions, K as makeIcon, Yn as markDefaults, rr as mergeChartOptions, nr as mirrorValueAxis, tr as pieChartOptions, An as theme, rn as tokens };
 
 //# sourceMappingURL=index.js.map

@@ -360,7 +360,40 @@ export const container = {
    * they answer two different questions.
    */
   wide: '1600px',
+  /** The layout grid's own width. See `grid` below — the two must agree. */
+  grid: '1300px',
   prose: '68ch', //     measure for long-form reading
+} as const;
+
+/* ---------------------------------------------------------------------------
+ * 12. LAYOUT GRID
+ *
+ * Twelve 90px columns separated by 20px gutters:
+ *
+ *     12 x 90  +  11 x 20  =  1080 + 220  =  1300px
+ *
+ * The gutter is deliberately NOT scaled with the columns. It is a spacing
+ * value first — it has to stay on the 4px scale and agree with component
+ * padding — so widening the grid grows the columns and leaves the rhythm
+ * between them alone. Scaling both would have put the gutter at 26px, off the
+ * scale and out of step with every other gap on the page.
+ *
+ * The column width is what the grid RESOLVES TO at `container.grid`, not a
+ * fixed track. Tracks are declared `repeat(12, minmax(0, 1fr))` with a fixed
+ * gutter, so they measure exactly 65px at the full width and shrink in
+ * proportion below it — a fixed 65px track would overflow the moment the
+ * viewport dropped under 1000px.
+ *
+ * `columnWidth` is therefore documentation and a test fixture rather than
+ * something to lay out with. verify-tokens asserts the arithmetic above, so
+ * changing one number without the others fails the build instead of quietly
+ * producing a grid that is not the grid.
+ * ------------------------------------------------------------------------ */
+
+export const grid = {
+  columns: 12,
+  columnWidth: '90px',
+  gutter: '20px',
 } as const;
 
 /** Focus ring — one definition, consumed by every interactive component. */

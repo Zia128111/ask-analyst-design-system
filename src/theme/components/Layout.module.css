@@ -80,6 +80,16 @@
  * whatever it picks, the header has to match, or the logo and the page's first
  * heading start on two different edges.
  */
+/*
+ * `container.grid` is the width of the GRID ITSELF, not of the header box, so
+ * the inline padding is added on top of it. Capping the box at 1000px instead
+ * would leave 968px of usable width and 62.3px columns — close enough to look
+ * right in a screenshot and wrong everywhere it matters.
+ */
+.headerInner[data-width='grid'] {
+  max-width: calc(var(--ask-container-grid) + 2 * var(--ask-space-4));
+}
+
 .headerInner[data-width='wide'] {
   max-width: var(--ask-container-wide);
 }

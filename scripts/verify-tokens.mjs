@@ -14,6 +14,7 @@ import {
   blue, neutral, green, red, amber, ink,
   semanticLight, semanticDark,
   fontSize, space, radius, borderWidth, controlHeight,
+  grid, container,
 } from '../src/theme/tokens.ts';
 
 /* ---------- contrast maths (WCAG 2.x relative luminance) ---------- */
@@ -164,6 +165,35 @@ check(
   'semantic: light and dark define identical keys',
   JSON.stringify(lk) === JSON.stringify(dk),
   `light=${lk.length} dark=${dk.length}`,
+);
+
+/* ---------------------------------------------------------------------------
+ * LAYOUT GRID
+ *
+ * The grid is four numbers that have to agree. Stated in one place and
+ * asserted here, so changing the column width without the gutter — or the
+ * container without either — fails the build rather than quietly producing a
+ * grid that is not the grid.
+ * ------------------------------------------------------------------------ */
+
+const px = (v) => parseFloat(v);
+const gridSpan =
+  grid.columns * px(grid.columnWidth) + (grid.columns - 1) * px(grid.gutter);
+
+check(
+  'grid columns and gutters sum to the container width',
+  gridSpan === px(container.grid),
+  `${grid.columns} x ${px(grid.columnWidth)} + ${grid.columns - 1} x ${px(grid.gutter)} = ${gridSpan}px vs container.grid ${container.grid}`,
+);
+check(
+  'grid divides into halves, thirds and quarters',
+  [2, 3, 4, 6].every((n) => grid.columns % n === 0),
+  `${grid.columns} columns`,
+);
+check(
+  'the gutter sits on the 4px spacing scale',
+  Object.values(space).includes(grid.gutter),
+  `${grid.gutter} — an off-scale gutter cannot line up with component padding`,
 );
 
 /* ---------- report ---------- */
