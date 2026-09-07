@@ -1,0 +1,48 @@
+{
+  "pkg": "@akseer/ask-analyst-design-system",
+  "globalName": "AskAnalystDS",
+  "shape": "package",
+  "buildCmd": "npm run build:lib && node .design-sync/make-css.mjs",
+  "srcDir": "src",
+  "tsconfig": "tsconfig.lib.json",
+  "extraEntries": [
+    "@mantine/core",
+    "@mantine/dates",
+    "@mantine/notifications"
+  ],
+  "cssEntry": "dist/design-sync-styles.css",
+  "docsDir": ".design-sync/docs",
+  "guidelinesGlob": [
+    "CLAUDE.md",
+    "DESIGN-SYSTEM-v2.md"
+  ],
+  "componentSrcMap": {
+    "Icons": null
+  },
+  "provider": {
+    "component": "DirectionProvider",
+    "inner": {
+      "component": "MantineProvider",
+      "props": {
+        "theme": {
+          "$ref": "theme"
+        },
+        "cssVariablesResolver": {
+          "$ref": "cssVariablesResolver"
+        },
+        "defaultColorScheme": "light"
+      }
+    }
+  },
+  "overrides": {
+    "AppHeader": {
+      "cardMode": "column",
+      "viewport": "1280x200"
+    },
+    "AskChart": {
+      "cardMode": "column",
+      "viewport": "900x320"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
