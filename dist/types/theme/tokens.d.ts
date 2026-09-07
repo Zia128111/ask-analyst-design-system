@@ -195,7 +195,24 @@ export declare const container: {
     readonly lg: "1024px";
     readonly xl: "1280px";
     readonly content: "1280px";
+    /**
+     * Data-dense pages: a market board, a screener, a comparison table.
+     *
+     * `content` is a READING measure — past about 1280px a paragraph needs the
+     * eye to travel too far back to find the next line. A table of numbers has
+     * no such limit: every extra 300px is another column that would otherwise
+     * be dropped or pushed into a horizontal scroller. Two measures, because
+     * they answer two different questions.
+     */
+    readonly wide: "1600px";
+    /** The layout grid's own width. See `grid` below — the two must agree. */
+    readonly grid: "1300px";
     readonly prose: "68ch";
+};
+export declare const grid: {
+    readonly columns: 12;
+    readonly columnWidth: "90px";
+    readonly gutter: "20px";
 };
 /** Focus ring — one definition, consumed by every interactive component. */
 export declare const focusRing: {

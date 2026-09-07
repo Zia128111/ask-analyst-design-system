@@ -9,6 +9,16 @@
  *    to whole device pixels, so the fractional values never rendered as
  *    specified. Whole pixels keep the header-thicker-than-rows contrast and
  *    render crisply at every DPR.
+ *  - Rules are real BORDERS on a collapsed table, not inset box-shadows.
+ *    A box-shadow is painted per cell, so each cell drew its own segment of
+ *    the row rule. Column widths are rarely whole pixels — 110.77px, 83.28px,
+ *    122.95px in a three-column card — so at each boundary the two segments
+ *    failed to meet and left a hairline gap. Ten rows of that reads as a
+ *    vertical column separator, which is exactly what this table forbids, and
+ *    it is invisible to computed style: every cell correctly reports 0px
+ *    borders while the seams are plainly there on screen.
+ *    `border-collapse` exists to solve this — collapsed borders are resolved
+ *    into one continuous grid line rather than per-box paint.
  *  - Header type is 12px, not 10px. 10px is below the legibility floor.
  *  - Body type is 14px, not 13.5px — on the type scale.
  *  - Zebra striping REMOVED. v1.0 used #f7fdf9 (green tint) and #fffafa (red
@@ -25,7 +35,8 @@
 }
 
 /* The <tr> reset is load-bearing: Mantine's row border lives there, and
-   leaving it in place double-draws every rule. */
+   leaving it in place double-draws every rule. The bottom rules are put back
+   on the cells below. */
 .table tr,
 .table thead th,
 .table tbody td {
@@ -34,7 +45,7 @@
 
 .table thead th {
   background: var(--ask-bg-brand-subtle);
-  box-shadow: inset 0 calc(-1 * var(--ask-border-thick)) 0 0 var(--ask-border-brand);
+  border-bottom: var(--ask-border-thick) solid var(--ask-border-brand);
   padding: var(--ask-space-2) var(--ask-space-3);
 
   font-size: var(--ask-font-2xs);
@@ -53,7 +64,7 @@
  * which reads as a missing border on every row.
  */
 .table tbody :is(td, th) {
-  box-shadow: inset 0 calc(-1 * var(--ask-border-thin)) 0 0 var(--ask-border-brand);
+  border-bottom: var(--ask-border-thin) solid var(--ask-border-brand);
   padding: var(--ask-space-2) var(--ask-space-3);
 
   font-size: var(--ask-font-xs);

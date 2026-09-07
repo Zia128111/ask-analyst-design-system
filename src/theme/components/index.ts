@@ -246,14 +246,29 @@ export const components: MantineThemeComponents = {
     defaultProps: { variant: 'company' },
   }),
 
+  /*
+   * Cards keep their brand-blue outline, and carry NO shadow.
+   *
+   * The outline is the card's edge and is wanted. What was not wanted was the
+   * TABLE drawing its own left and right edges: the scroller used to paint a
+   * 12px shadow at each inline edge, which on a phone — where the table fills
+   * the card — sat just inside the card's own rule and read as a doubled
+   * border. That is fixed in DataTable.module.css; the card outline here is
+   * unrelated and stays.
+   *
+   * `shadow` is dropped from the defaults: an outline and a drop shadow are
+   * two answers to the same question, and on a white page the shadow only
+   * muddied the edge it sat under. Still available as an opt-in for the cases
+   * that genuinely float — a modal panel, a popover.
+   */
   Paper: Paper.extend({
     classNames: paperClasses,
-    defaultProps: { radius: 'lg', shadow: 'sm', withBorder: true },
+    defaultProps: { radius: 'lg', withBorder: true },
   }),
 
   Card: Card.extend({
     classNames: cardClasses,
-    defaultProps: { radius: 'lg', shadow: 'sm', withBorder: true },
+    defaultProps: { radius: 'lg', withBorder: true },
   }),
 
   Avatar: Avatar.extend({ classNames: avatarClasses }),

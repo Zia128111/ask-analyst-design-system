@@ -33,6 +33,20 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Research Report', href: '#research' },
 ];
 
+/**
+ * How wide the header's inner row runs.
+ *
+ * The header MUST agree with the page beneath it, or the logo and the first
+ * heading sit on two different inline-start edges — which is why this is a
+ * prop and not something a consumer overrides with its own CSS.
+ *
+ *   grid     1000px — the twelve-column layout grid (see `grid` in tokens)
+ *   content  the reading measure, 1280px — the default, and right for most pages
+ *   wide     1600px — data-dense boards where columns are worth more than measure
+ *   full     no cap — edge to edge, for a page that really is the whole screen
+ */
+export type HeaderWidth = 'grid' | 'content' | 'wide' | 'full';
+
 export interface AppHeaderProps {
   items?: NavItem[];
   activeHref?: string;
@@ -40,6 +54,8 @@ export interface AppHeaderProps {
   mainId?: string;
   brand?: React.ReactNode;
   actions?: React.ReactNode;
+  /** Defaults to 'content', so existing pages are unaffected. */
+  width?: HeaderWidth;
 }
 
 export function AppHeader({
@@ -48,6 +64,7 @@ export function AppHeader({
   mainId = 'main',
   brand,
   actions,
+  width = 'content',
 }: AppHeaderProps) {
   const [opened, setOpened] = useState(false);
 
@@ -74,7 +91,7 @@ export function AppHeader({
       </a>
 
       <header className={classes.header}>
-        <div className={classes.headerInner}>
+        <div className={classes.headerInner} data-width={width}>
           <Group gap="sm" wrap="nowrap">
             {/* The logo is the site name, so it carries the accessible name
                 rather than being decorative. */}

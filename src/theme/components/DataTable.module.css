@@ -21,27 +21,30 @@
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
 
-  /* Edge shadows that appear only when there is more content that way.
-     Two layers: an opaque "cover" pinned to the edge, and the shadow itself.
-     background-attachment: local moves the covers with the content, so the
-     shadow is revealed exactly when the content is scrolled. */
-  background-image:
-    linear-gradient(to right, var(--ask-bg-surface) 30%, transparent),
-    linear-gradient(to left, var(--ask-bg-surface) 30%, transparent),
-    linear-gradient(to right, rgba(15, 23, 42, 0.12), transparent 12px),
-    linear-gradient(to left, rgba(15, 23, 42, 0.12), transparent 12px);
-  background-position:
-    left center,
-    right center,
-    left center,
-    right center;
-  background-repeat: no-repeat;
-  background-size:
-    32px 100%,
-    32px 100%,
-    12px 100%,
-    12px 100%;
-  background-attachment: local, local, scroll, scroll;
+  /* The table's own box is the thing that decides which columns fit, so it is
+     the thing the priority rules below query. See the note beside them. */
+  container-type: inline-size;
+  container-name: ask-table;
+
+  /*
+   * NO EDGE SHADOWS.
+   *
+   * v2.0 painted a 12px shadow at each inline edge, meant to appear only when
+   * there was more table that way: an opaque `background-attachment: local`
+   * cover moved with the content and uncovered the `scroll`-attached shadow
+   * beneath it exactly when the table was scrolled.
+   *
+   * It did not work. The covers never fully hid the shadows, so a table that
+   * fits its box — which, now that column priority is container-based, is most
+   * of them — drew two grey vertical bands down its left and right edges. On a
+   * phone, where the table fills the card, they read as table borders. This is
+   * a system whose table spec is "horizontal rules only, no outer frame, no
+   * column separators", so it was drawing precisely the thing it forbids.
+   *
+   * The scrollbar is the affordance. `scrollbar-width: thin` above keeps it
+   * unobtrusive, and it has the considerable advantage of appearing only when
+   * there is actually something to scroll.
+   */
 }
 
 /* Pinned identifier column. */
@@ -77,13 +80,32 @@
  * Applied to BOTH the th and every matching td.
  * ------------------------------------------------------------------------ */
 
-@media (max-width: 640px) {
+/*
+ * CONTAINER queries, not media queries.
+ *
+ * v2.0 keyed these to the VIEWPORT, on the assumption that a table is about as
+ * wide as the page. That holds for a full-width table and fails completely for
+ * a table in a card: three ranked lists side by side on the twelve-column grid
+ * are a third of it wide on a 1440px screen, so every media query said "plenty
+ * of room" and all five columns stayed in a box that fits three. The result
+ * was a percentage column clipped mid-value — the failure looked like a
+ * styling bug rather than a layout rule doing exactly what it was told.
+ *
+ * Querying the scroller itself makes the rule true at any width, in a card or
+ * across the page, with no breakpoint to keep in sync.
+ *
+ * The thresholds are the widths the table actually needs: about 430px for all
+ * five columns, 360px once Volume is gone. Below that Symbol, Price and the
+ * percentage remain — and the percentage is where the direction glyph lives,
+ * so a movement never loses its non-colour signal on the way down.
+ */
+@container ask-table (max-width: 430px) {
   .scroller [data-priority='3'] {
     display: none;
   }
 }
 
-@media (max-width: 420px) {
+@container ask-table (max-width: 360px) {
   .scroller [data-priority='2'] {
     display: none;
   }

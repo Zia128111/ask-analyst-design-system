@@ -55,6 +55,8 @@ export type { ColorMode } from './lib/chart';
 export {
   baseChartOptions,
   lineChartOptions,
+  mergeChartOptions,
+  mirrorValueAxis,
   areaChartOptions,
   barChartOptions,
   pieChartOptions,
@@ -76,7 +78,7 @@ export {
 
 /* -- Components ----------------------------------------------------------- */
 export { AppHeader, NAV_ITEMS } from './components/AppHeader';
-export type { NavItem, AppHeaderProps } from './components/AppHeader';
+export type { NavItem, AppHeaderProps, HeaderWidth } from './components/AppHeader';
 
 export { AskChart } from './components/AskChart';
 export type { ChartKind, AskChartProps } from './components/AskChart';
