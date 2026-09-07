@@ -1,0 +1,41 @@
+/*
+ * CHROME TOGGLES — Design System v2.0
+ *
+ * Shared by the header's appearance controls (colour scheme, text direction).
+ *
+ * Deliberately NEUTRAL, unlike the system's default SegmentedControl (which
+ * uses a brand-blue indicator). These sit in the header beside the active nav
+ * pill, which is already #1485ff — more blue pills there would compete for
+ * attention with the thing that tells you where you are.
+ *
+ * Chrome controls recede; data controls (the 1D/1M/1Y timeframe switch) keep
+ * the brand indicator.
+ */
+.root {
+  /* Track sits one step BELOW the surface so the indicator reads as raised —
+     works in both schemes, since both tokens flip together. */
+  background: var(--ask-bg-subtle);
+  border: var(--ask-border-thin) solid var(--ask-border-subtle);
+  border-radius: var(--ask-radius-full);
+  padding: 3px;
+}
+
+.root :global(.mantine-SegmentedControl-indicator) {
+  background: var(--ask-bg-surface);
+  border: var(--ask-border-thin) solid var(--ask-border-subtle);
+  border-radius: var(--ask-radius-full);
+  box-shadow: var(--mantine-shadow-xs);
+}
+
+.root :global(.mantine-SegmentedControl-label) {
+  border-radius: var(--ask-radius-full);
+  padding-inline: var(--ask-space-3);
+  color: var(--ask-text-secondary);
+  font-weight: 600;
+}
+
+/* The active label is INK on the light pill, not the white used on brand
+   fills — the pill is a surface here, not a brand colour. */
+.root :global(.mantine-SegmentedControl-label[data-active]) {
+  color: var(--ask-text-primary);
+}

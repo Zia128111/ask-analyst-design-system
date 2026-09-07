@@ -1,0 +1,64 @@
+/*
+ * SEGMENTED CONTROL — Design System v2.0
+ * This is the 1D / 1M / 3M / 6M / 1Y / 3Y / 5Y timeframe switch on every chart,
+ * so it is one of the most-clicked controls in the product.
+ *
+ * v1.0 described it as a "Navigation Bar" with 0.2px borders, 1.231px radius
+ * and 6.156px vertical padding — a ~23px tall target against a 44px minimum.
+ */
+.root {
+  background: var(--ask-bg-muted);
+  border-radius: var(--ask-radius-md);
+  padding: var(--ask-space-1);
+  gap: var(--ask-space-1);
+}
+
+.control {
+  border: none;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--ask-control-sm);
+  padding: 0 var(--ask-space-3);
+  border-radius: var(--ask-radius-sm);
+
+  font-size: var(--ask-font-2xs);
+  font-weight: 600;
+  line-height: var(--ask-leading-normal);
+  color: var(--ask-text-secondary);
+  white-space: nowrap;
+
+  /* Timeframes are read as a row of values; tabular figures keep them even. */
+  font-variant-numeric: tabular-nums;
+
+  transition: color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.label:hover:not([data-active]) {
+  color: var(--ask-text-link);
+}
+
+.label[data-active] {
+  /* Sits on the #1485ff indicator, so ink rather than white. */
+  color: var(--ask-text-on-brand);
+}
+
+.label[data-disabled] {
+  color: var(--ask-text-disabled);
+}
+
+/* The sliding pill behind the active segment. */
+.indicator {
+  background: var(--ask-bg-brand);
+  border-radius: var(--ask-radius-sm);
+  box-shadow: none;
+}
+
+@media (pointer: coarse) {
+  .label {
+    min-height: var(--ask-touch-target);
+  }
+}

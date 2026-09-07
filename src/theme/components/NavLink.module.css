@@ -1,0 +1,67 @@
+/*
+ * NAV LINK — Design System v2.0
+ * The nine top-level items (Market, Companies, Data Bank, ...).
+ *
+ * v1.0 spec'd these at 6.156px vertical padding with a 1.231px radius and a
+ * 0.2px border — roughly a 23px tall target against a 44px minimum, and two
+ * values that could never render. Sizing now comes from the control scale.
+ *
+ * ACTIVE STATE: a light brand tint with blue TEXT, matching the Company badge
+ * and the filter chips. The text is #0a6fdb (4.51:1 on the tint); the brand
+ * #1485ff would be 3.34:1 there and fail AA.
+ */
+.root {
+  min-height: var(--ask-control-md);
+  padding: var(--ask-space-2) var(--ask-space-3);
+  border-radius: var(--ask-radius-sm);
+
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+  color: var(--ask-text-secondary);
+
+  transition:
+    background-color var(--ask-duration-fast) var(--ask-ease-standard),
+    color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.root:hover:not([data-active]) {
+  background: var(--ask-bg-hover);
+  color: var(--ask-text-link);
+}
+
+.root[data-active] {
+  background: var(--ask-bg-brand-subtle);
+  color: var(--ask-text-link);
+}
+
+/* A filled variant for the primary nav bar, where the active item is a pill. */
+/*
+ * Mantine writes --nl-bg / --nl-color as INLINE styles for the filled variant
+ * (brand fill, white label), so those are overridden in `vars` in ./index.ts —
+ * a CSS rule here cannot win against them.
+ */
+.root[data-variant='filled'][data-active] {
+  background: var(--ask-bg-brand-subtle);
+  color: var(--ask-text-link);
+}
+
+.root[data-variant='filled'][data-active]:hover {
+  background: var(--ask-bg-selected);
+  color: var(--ask-text-link-hover);
+}
+
+.label {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.description {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-tertiary);
+}
+
+@media (pointer: coarse) {
+  .root {
+    min-height: var(--ask-touch-target);
+  }
+}

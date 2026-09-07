@@ -1,0 +1,32 @@
+/*
+ * NOTIFICATION / TOAST — Design System v2.0
+ * Listed but never specified in v1.0's own component checklist.
+ *
+ * Toasts sit on the toast z-index rung and are announced politely; an error
+ * toast should be rendered with role="alert" by the caller so it interrupts.
+ */
+.root {
+  border-radius: var(--ask-radius-md);
+  border: var(--ask-border-thin) solid var(--ask-border-default);
+  background: var(--ask-bg-surface);
+  box-shadow: var(--mantine-shadow-lg);
+  padding: var(--ask-space-3) var(--ask-space-4);
+}
+
+.root::before {
+  /* The accent bar is decorative; tone is also carried by title wording. */
+  width: var(--ask-border-thick);
+  border-radius: var(--ask-radius-full);
+}
+
+.title {
+  font-size: var(--ask-font-xs);
+  font-weight: 700;
+  color: var(--ask-text-primary);
+}
+
+.description {
+  font-size: var(--ask-font-xs);
+  line-height: var(--ask-leading-relaxed);
+  color: var(--ask-text-secondary);
+}

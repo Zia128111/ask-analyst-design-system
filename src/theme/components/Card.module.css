@@ -1,0 +1,10 @@
+/* CARD — Design System v2.0. See Paper.module.css. */
+.root {
+  --card-padding: var(--ask-space-6); /* 24px, unchanged from v1.0 */
+  --paper-radius: var(--ask-radius-lg);
+  background: var(--ask-bg-surface);
+}
+
+.root[data-with-border] {
+  border: var(--ask-border-thin) solid var(--ask-border-brand);
+}

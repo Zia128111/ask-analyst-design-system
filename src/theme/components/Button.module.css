@@ -1,0 +1,46 @@
+/*
+ * BUTTON — Design System v2.0
+ * v1.0's button (white fill, brand border, dark label) is kept as the `default`
+ * variant, so <Button> still reads as the Ask Analyst button while Mantine's
+ * filled / light / outline / subtle stay available.
+ *
+ * CHANGES FROM v1.0: height now comes from the control-height scale rather
+ * than 13.5px padding (a 47px control off every grid); radius 8px not 10px;
+ * transitions and a focus ring added.
+ *
+ * NOTE: colours live in `vars` in ./index.ts, not here. Mantine writes
+ * --button-bg/-bd/-color as INLINE styles, which always beat a class rule.
+ */
+.root {
+  transition:
+    background-color var(--ask-duration-fast) var(--ask-ease-standard),
+    border-color var(--ask-duration-fast) var(--ask-ease-standard),
+    color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.root[data-variant='default'] {
+  height: var(--ask-control-md);
+  padding-inline: var(--ask-space-4);
+  border-radius: var(--ask-radius-md);
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+}
+
+.root[data-variant='default'][data-size='lg'] {
+  height: var(--ask-control-lg);
+  padding-inline: var(--ask-space-5);
+  font-size: var(--ask-font-sm);
+}
+
+.root[data-variant='default'][data-size='sm'] {
+  height: var(--ask-control-sm);
+  padding-inline: var(--ask-space-3);
+  font-size: var(--ask-font-2xs);
+}
+
+.root[data-variant='default']:disabled,
+.root[data-variant='default'][data-disabled] {
+  background: var(--ask-bg-muted);
+  border-color: var(--ask-border-default);
+  color: var(--ask-text-disabled);
+}

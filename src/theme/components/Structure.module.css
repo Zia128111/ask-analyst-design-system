@@ -1,0 +1,94 @@
+/*
+ * ACCORDION / STEPPER / TIMELINE / BREADCRUMBS / TREE — Design System v2.0
+ * Disclosure and wayfinding surfaces.
+ */
+
+/* --- Accordion: used for FAQ, filter groups, report sections -------------- */
+.accordionItem {
+  border-bottom: var(--ask-border-thin) solid var(--ask-border-subtle);
+  background: transparent;
+}
+
+.accordionControl {
+  min-height: var(--ask-control-md);
+  padding: var(--ask-space-3) 0;
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+  color: var(--ask-text-primary);
+}
+
+.accordionControl:hover {
+  background: transparent;
+  color: var(--ask-text-link);
+}
+
+.accordionPanelContent {
+  padding: 0 0 var(--ask-space-4);
+  font-size: var(--ask-font-xs);
+  line-height: var(--ask-leading-relaxed);
+  color: var(--ask-text-secondary);
+}
+
+/* --- Stepper: multi-step flows (onboarding, report builder) --------------- */
+.stepperStepIcon {
+  border-width: var(--ask-border-thin);
+  border-color: var(--ask-border-default);
+  background: var(--ask-bg-surface);
+  color: var(--ask-text-tertiary);
+  font-size: var(--ask-font-2xs);
+  font-weight: 700;
+}
+
+.stepperStepIcon[data-progress] {
+  border-color: var(--ask-border-brand);
+  color: var(--ask-text-link);
+}
+
+.stepperStepIcon[data-completed] {
+  background: var(--ask-bg-brand);
+  border-color: var(--ask-border-brand);
+  color: var(--ask-text-inverse);
+}
+
+.stepperStepLabel {
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+  color: var(--ask-text-primary);
+}
+
+.stepperStepDescription {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-tertiary);
+}
+
+.stepperSeparator {
+  background: var(--ask-border-subtle);
+}
+
+/* --- Timeline: corporate actions, announcement history ------------------- */
+.timelineItemBullet {
+  border-color: var(--ask-border-brand);
+  background: var(--ask-bg-surface);
+  color: var(--ask-text-link);
+}
+
+.timelineItemTitle {
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+  color: var(--ask-text-primary);
+}
+
+.timelineItemBody {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-secondary);
+}
+
+/* --- Breadcrumbs --------------------------------------------------------- */
+.breadcrumbsRoot {
+  font-size: var(--ask-font-2xs);
+}
+
+.breadcrumbsSeparator {
+  color: var(--ask-text-tertiary);
+  margin: 0 var(--ask-space-2);
+}

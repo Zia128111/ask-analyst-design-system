@@ -1,0 +1,60 @@
+/*
+ * BADGE / TAG — Design System v2.0
+ * Four tones: company | report | success | neutral.
+ * Mantine renders `data-variant` on the root, so each tone is a plain selector.
+ *
+ * CHANGES FROM v1.0: type is 12px (was 13px) to sit on the scale; sizing now
+ * comes from tokens; every tone is contrast-verified by verify-tokens.mjs.
+ */
+.root {
+  height: auto;
+  min-height: 0;
+  padding: var(--ask-space-1) var(--ask-space-2);
+  border-radius: var(--ask-radius-sm);
+  border: var(--ask-border-thin) solid transparent;
+  gap: var(--ask-space-1);
+
+  font-size: var(--ask-font-2xs);
+  font-weight: 700;
+  line-height: var(--ask-leading-normal);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Mantine uppercases the inner label element, not the root. */
+.label {
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: normal;
+  overflow: visible;
+}
+
+.root[data-variant='company'] {
+  background: var(--ask-bg-brand-subtle);
+  border-color: var(--ask-border-brand);
+  color: var(--ask-text-link);
+}
+
+.root[data-variant='report'] {
+  background: var(--ask-warning-bg);
+  border-color: var(--ask-warning-border);
+  color: var(--ask-warning-text);
+}
+
+.root[data-variant='success'] {
+  background: var(--ask-positive-bg);
+  border-color: var(--ask-positive-border);
+  color: var(--ask-positive-text);
+}
+
+.root[data-variant='neutral'] {
+  background: var(--ask-neutral-bg);
+  border-color: var(--ask-neutral-border);
+  color: var(--ask-neutral-text);
+}
+
+.root[data-variant='negative'] {
+  background: var(--ask-negative-bg);
+  border-color: var(--ask-negative-border);
+  color: var(--ask-negative-text);
+}

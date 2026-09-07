@@ -1,0 +1,135 @@
+/* ============================================================================
+ * RESPONSIVE DATA TABLE — Ask Analyst Design System v2.0
+ * ============================================================================
+ * The live site overflows its viewport by 256px at 375px wide. Horizontal page
+ * scroll is a documented anti-pattern: it hides content with no affordance and
+ * breaks pinch-zoom orientation.
+ *
+ * STRATEGY for wide market tables (chosen over a card/stacked fallback):
+ *   1. Scroll the TABLE, never the page.
+ *   2. Pin the identifier column (ticker) so a scrolled row stays identifiable.
+ *   3. Show a shadow on whichever edge has more content, so users know to
+ *      scroll — a scroll container with no affordance reads as truncated data.
+ *   4. Drop low-priority columns at narrow widths via data-priority.
+ *
+ * Cards were rejected because analysts scan DOWN a column to compare values;
+ * stacking one row per card destroys that comparison.
+ * ========================================================================= */
+
+.scroller {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+
+  /* Edge shadows that appear only when there is more content that way.
+     Two layers: an opaque "cover" pinned to the edge, and the shadow itself.
+     background-attachment: local moves the covers with the content, so the
+     shadow is revealed exactly when the content is scrolled. */
+  background-image:
+    linear-gradient(to right, var(--ask-bg-surface) 30%, transparent),
+    linear-gradient(to left, var(--ask-bg-surface) 30%, transparent),
+    linear-gradient(to right, rgba(15, 23, 42, 0.12), transparent 12px),
+    linear-gradient(to left, rgba(15, 23, 42, 0.12), transparent 12px);
+  background-position:
+    left center,
+    right center,
+    left center,
+    right center;
+  background-repeat: no-repeat;
+  background-size:
+    32px 100%,
+    32px 100%,
+    12px 100%,
+    12px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+/* Pinned identifier column. */
+.scroller table :is(th, td):first-child {
+  position: sticky;
+  /* Logical, not `left: 0` — in Arabic the pinned column belongs on the right. */
+  inset-inline-start: 0;
+  z-index: var(--ask-z-raised);
+  background: var(--ask-bg-surface);
+}
+
+.scroller table thead th:first-child {
+  /* Header cell must keep the header fill, not the surface colour. */
+  background: var(--ask-bg-brand-subtle);
+  z-index: calc(var(--ask-z-raised) + 1);
+}
+
+/* Hover has to repaint the pinned cell too, or it detaches from its row. */
+.scroller table tbody tr:hover :is(th, td):first-child {
+  background: var(--ask-bg-hover);
+}
+
+/* A sticky header keeps column meaning while scrolling a long list. */
+.stickyHeader thead th {
+  position: sticky;
+  top: 0;
+  z-index: var(--ask-z-sticky);
+}
+
+/* ---------------------------------------------------------------------------
+ * COLUMN PRIORITY
+ * data-priority="1" always shows. Higher numbers drop first as space runs out.
+ * Applied to BOTH the th and every matching td.
+ * ------------------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+  .scroller [data-priority='3'] {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .scroller [data-priority='2'] {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * PRICE TICK FLASH
+ * A live quote that changes silently is easy to miss. The flash is background
+ * only — never a layout or font change, which would reflow the table.
+ * ------------------------------------------------------------------------ */
+
+@keyframes ask-tick-up {
+  from {
+    background-color: var(--ask-positive-bg);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+@keyframes ask-tick-down {
+  from {
+    background-color: var(--ask-negative-bg);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.scroller td[data-tick='up'] {
+  animation: ask-tick-up var(--ask-duration-slow) var(--ask-ease-decelerate);
+}
+
+.scroller td[data-tick='down'] {
+  animation: ask-tick-down var(--ask-duration-slow) var(--ask-ease-decelerate);
+}
+
+/* index.css neutralises these globally under prefers-reduced-motion. */
+
+/* ---------------------------------------------------------------------------
+ * STALE DATA
+ * When a feed stops updating, the numbers must stop looking authoritative.
+ * Dimming alone would be colour-only signalling, so this pairs with a visible
+ * "Delayed"/"Stale" badge in the table caption.
+ * ------------------------------------------------------------------------ */
+
+.stale tbody td {
+  opacity: 0.55;
+}

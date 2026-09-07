@@ -1,0 +1,53 @@
+/* ============================================================================
+ * DENSITY MODES — Ask Analyst Design System v2.0
+ * ============================================================================
+ * An analyst scanning a 200-row screener wants more rows per screen; a casual
+ * reader wants breathing room. Set data-density on any container to rescale
+ * table cells and control heights beneath it.
+ *
+ *   <div data-density="compact">   … 200-row screener
+ *   <div data-density="comfortable"> … a report page
+ *
+ * Only PADDING and control height change. Type size does not: shrinking text
+ * below the 12px floor to fit more rows is how density modes become an
+ * accessibility failure.
+ * ========================================================================= */
+
+[data-density='compact'] {
+  --ask-density-cell-y: var(--ask-space-1); /* 4px  */
+  --ask-density-cell-x: var(--ask-space-2); /* 8px  */
+  --ask-density-control: var(--ask-control-sm); /* 32px */
+}
+
+[data-density='comfortable'] {
+  --ask-density-cell-y: var(--ask-space-3); /* 12px */
+  --ask-density-cell-x: var(--ask-space-4); /* 16px */
+  --ask-density-control: var(--ask-control-lg); /* 48px */
+}
+
+/* Default (no attribute) keeps the standard 8px/12px cell. */
+:root {
+  --ask-density-cell-y: var(--ask-space-2);
+  --ask-density-cell-x: var(--ask-space-3);
+  --ask-density-control: var(--ask-control-md);
+}
+
+/* `tbody`/`thead` in the selector is deliberate: Table.module.css uses
+   `.table tbody :is(td, th)`, which has IDENTICAL specificity to a shorter
+   rule here — and it is imported later, so it would win on source order.
+   The extra element bumps this to (0,1,3) and settles it on specificity. */
+[data-density] table tbody :is(th, td),
+[data-density] table thead :is(th, td) {
+  padding: var(--ask-density-cell-y) var(--ask-density-cell-x);
+}
+
+[data-density] :is(.mantine-Button-root, .mantine-TextInput-input, .mantine-Select-input) {
+  height: var(--ask-density-control);
+}
+
+/* Touch always wins: a compact table on a phone still needs real targets. */
+@media (pointer: coarse) {
+  [data-density='compact'] {
+    --ask-density-control: var(--ask-touch-target);
+  }
+}

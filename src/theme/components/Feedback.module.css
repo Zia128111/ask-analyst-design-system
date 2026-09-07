@@ -1,0 +1,31 @@
+/*
+ * LOADER / SKELETON / DIVIDER — Design System v2.0
+ * Small surfaces, but they appear on every screen, so they are tokenised too.
+ */
+
+/* Skeleton: a calm placeholder, not a second focal point. The shimmer is
+   neutralised globally under prefers-reduced-motion (see index.css). */
+.skeleton::before {
+  background: var(--ask-bg-muted);
+}
+
+.skeleton::after {
+  background: linear-gradient(
+    90deg,
+    var(--ask-bg-muted) 0%,
+    var(--ask-bg-subtle) 50%,
+    var(--ask-bg-muted) 100%
+  );
+}
+
+.divider {
+  border-color: var(--ask-border-subtle);
+}
+
+.dividerLabel {
+  font-size: var(--ask-font-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ask-text-tertiary);
+}

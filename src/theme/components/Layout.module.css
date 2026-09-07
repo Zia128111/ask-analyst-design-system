@@ -1,0 +1,185 @@
+/*
+ * PAGE COMPOSITIONS — Design System v2.0
+ * Implements v1.0 §Component Specifications: Header, Navigation Bar,
+ * Title Section, Meta Section.
+ *
+ * v1.0 spec'd these as absolute pixel positions measured off a Figma frame:
+ *   Header      width 1440px; height 60px; border-bottom 0.25px; padding 13px/34px
+ *   Nav Bar     position absolute; top 16px; left 76px; gap 10px
+ *   Nav Item    radius 1.231px; border 0.2px; padding 14.775px x 6.156px
+ *   Title       centred 40px
+ *   Meta        gap 5px, separated by a 5px circle
+ *
+ * A fixed 1440px header does not exist on a phone, `position: absolute` for a
+ * nav bar breaks the moment content reflows, and 0.2px/0.25px borders never
+ * rendered at all. These are rebuilt as flow layout on the token scale.
+ */
+
+/* --- SKIP LINK ------------------------------------------------------------
+ * The first focusable element on the page. v1.0 had none, so a keyboard user
+ * had to tab through nine nav items on every single page to reach content.
+ * Visually hidden until focused — never display:none, which removes it from
+ * the tab order entirely.
+ * ----------------------------------------------------------------------- */
+.skipLink {
+  position: absolute;
+  inset-inline-start: var(--ask-space-2);
+  top: calc(-1 * var(--ask-control-lg));
+  z-index: calc(var(--ask-z-sticky) + 1);
+
+  padding: var(--ask-space-2) var(--ask-space-4);
+  background: var(--ask-bg-surface);
+  border: var(--ask-border-thick) solid var(--ask-border-focus);
+  border-radius: var(--ask-radius-md);
+  color: var(--ask-text-link);
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: top var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+/* `:focus`, not `:focus-visible`. A skip link is a keyboard-only affordance
+   and must reveal on ANY focus — including focus moved programmatically, or
+   restored after a route change. Gating it on :focus-visible leaves it hidden
+   in exactly those cases. */
+.skipLink:focus {
+  top: var(--ask-space-2);
+}
+
+/* --- HEADER ---------------------------------------------------------------
+ * Sticky, full-bleed, with a real 1px brand rule. Height comes from the
+ * control scale rather than a measured 60px.
+ * ----------------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--ask-z-sticky);
+
+  background: var(--ask-bg-surface);
+  border-bottom: var(--ask-border-thin) solid var(--ask-border-brand);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ask-space-4);
+
+  min-height: var(--ask-control-lg);
+  padding-block: var(--ask-space-2);
+  /* Fluid, not a fixed 1440px frame. */
+  max-width: var(--ask-container-content);
+  margin-inline: auto;
+  padding-inline: var(--ask-space-4);
+}
+
+/* --- NAVIGATION -----------------------------------------------------------
+ * Flow layout, not `position: absolute`. Hidden below the lg breakpoint,
+ * where nine items cannot fit — the Burger + Drawer takes over.
+ * ----------------------------------------------------------------------- */
+.nav {
+  display: none;
+  align-items: center;
+  gap: var(--ask-space-1);
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+.navItem {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ask-control-md);
+  padding-inline: var(--ask-space-3);
+  border-radius: var(--ask-radius-sm);
+
+  font-size: var(--ask-font-2xs);
+  font-weight: 600;
+  color: var(--ask-text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color var(--ask-duration-fast) var(--ask-ease-standard),
+    color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.navItem:hover {
+  background: var(--ask-bg-hover);
+  color: var(--ask-text-link);
+}
+
+/* aria-current is the source of truth for "you are here", so the styling
+   hangs off it — the visual and the announced state cannot drift apart. */
+/*
+ * Active item: LIGHT tint with the blue as TEXT, not a solid brand fill.
+ *
+ * The text is `text-link` (#0a6fdb, 4.51:1 on the tint), not the brand
+ * #1485ff, which measures 3.34:1 there and fails AA. Same pairing the Company
+ * badge and the filter chips already use, so "selected" reads consistently
+ * across the product.
+ */
+.navItem[aria-current='page'] {
+  background: var(--ask-bg-brand-subtle);
+  color: var(--ask-text-link);
+}
+
+/* Hover on the item you are already on deepens rather than lifting, so it
+   never looks like a different item became active. */
+.navItem[aria-current='page']:hover {
+  background: var(--ask-bg-selected);
+  color: var(--ask-text-link-hover);
+}
+
+@media (pointer: coarse) {
+  .navItem {
+    min-height: var(--ask-touch-target);
+  }
+}
+
+/* --- TITLE SECTION --------------------------------------------------------
+ * v1.0 centred the page title. For a scanning-heavy data product the title is
+ * left-aligned by default (the eye returns to a consistent inline-start edge);
+ * `centered` is available where a marketing page wants it.
+ * ----------------------------------------------------------------------- */
+.titleSection {
+  padding-block: var(--ask-space-6);
+}
+
+.titleSection[data-centered] {
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 var(--ask-space-2);
+}
+
+/* --- META SECTION ---------------------------------------------------------
+ * Items separated by a dot. The dot is decorative and MUST be hidden from
+ * assistive tech, or a screen reader announces "bullet" between every item.
+ * ----------------------------------------------------------------------- */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ask-space-2);
+
+  font-size: var(--ask-font-xs);
+  color: var(--ask-text-tertiary);
+}
+
+.metaDot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--ask-radius-full);
+  background: var(--ask-border-default);
+  flex: none;
+}

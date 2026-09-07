@@ -1,0 +1,34 @@
+/*
+ * POPOVER / DRAWER / HOVERCARD — Design System v2.0
+ * All floating surfaces share one contract so a dropdown, a popover and a
+ * drawer are recognisably the same material.
+ */
+.dropdown {
+  background: var(--ask-bg-surface);
+  border: var(--ask-border-thin) solid var(--ask-border-default);
+  border-radius: var(--ask-radius-md);
+  box-shadow: var(--mantine-shadow-md);
+  padding: var(--ask-space-3);
+  font-size: var(--ask-font-xs);
+  color: var(--ask-text-primary);
+}
+
+.drawerContent {
+  background: var(--ask-bg-surface);
+}
+
+.drawerHeader {
+  background: var(--ask-bg-surface);
+  border-bottom: var(--ask-border-thin) solid var(--ask-border-subtle);
+  padding: var(--ask-space-4);
+}
+
+.drawerTitle {
+  font-size: var(--ask-font-md);
+  font-weight: 700;
+  color: var(--ask-text-primary);
+}
+
+.drawerBody {
+  padding: var(--ask-space-4);
+}

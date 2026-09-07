@@ -1,0 +1,25 @@
+/*
+ * PILL — Design System v2.0
+ * The chips a MultiSelect shows for each chosen value. Reuses the badge
+ * geometry so a selected value looks like the badge it will become elsewhere.
+ */
+.root {
+  background: var(--ask-bg-brand-subtle);
+  border: var(--ask-border-thin) solid var(--ask-border-brand);
+  border-radius: var(--ask-radius-sm);
+  color: var(--ask-text-link);
+  font-size: var(--ask-font-2xs);
+  font-weight: 600;
+  height: auto;
+  padding: var(--ask-space-1) var(--ask-space-2);
+}
+
+/* The remove control needs its own affordance and a real hit area. */
+.remove {
+  color: var(--ask-text-link);
+  border-radius: var(--ask-radius-xs);
+}
+
+.remove:hover {
+  background: var(--ask-bg-selected);
+}

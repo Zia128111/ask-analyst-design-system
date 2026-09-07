@@ -1,0 +1,13 @@
+/*
+ * PAPER / CARD SURFACE — Design System v2.0
+ * Radius 12px (v1.0 had a 14px/15px duplication); border is the brand blue,
+ * which is deliberate in this system rather than a neutral outline.
+ */
+.root {
+  --paper-radius: var(--ask-radius-lg);
+  background: var(--ask-bg-surface);
+}
+
+.root[data-with-border] {
+  border: var(--ask-border-thin) solid var(--ask-border-brand);
+}

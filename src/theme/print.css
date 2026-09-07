@@ -1,0 +1,113 @@
+/* ============================================================================
+ * PRINT — Ask Analyst Design System v2.0
+ * ============================================================================
+ * Research Reports and letterheads are printed and PDF'd, so print is a real
+ * output target rather than an afterthought. v1.0 had no print styles at all,
+ * which means a printed report carried the nav bar, the dark theme's ink, and
+ * tables cut mid-row across pages.
+ * ========================================================================= */
+
+@media print {
+  /* Always print the light palette. A dark-themed page wastes toner and the
+     brand tint prints as grey mud. */
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Chrome is left in place; it is the CONTROLS that must go. */
+  header,
+  nav,
+  .mantine-Burger-root,
+  .mantine-Switch-root,
+  .mantine-Pagination-root,
+  .mantine-Drawer-root,
+  .mantine-Notification-root,
+  [data-no-print] {
+    display: none !important;
+  }
+
+  /* Flat: shadows and tints print as grey blocks. */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .mantine-Paper-root,
+  .mantine-Card-root {
+    border: 1px solid #999 !important;
+    background: #fff !important;
+    /* Keep a card whole on one page where it fits. */
+    break-inside: avoid;
+  }
+
+  /* Tables are the point of a research report. */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  /* Repeat the header on every page a long table spans — without this the
+     reader loses the column meaning after page one. */
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img,
+  figure {
+    break-inside: avoid;
+  }
+
+  th,
+  td {
+    /* box-shadow does not print; restore real rules. */
+    box-shadow: none !important;
+    border-bottom: 1px solid #999 !important;
+    color: #000 !important;
+  }
+
+  thead th {
+    border-bottom: 2px solid #000 !important;
+    background: #eee !important;
+    /* Force the fill to actually print rather than being stripped. */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* A heading must not be the last line on a page. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+    color: #000 !important;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* A link is useless on paper unless its destination is visible. */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: #444;
+  }
+
+  /* …but not for in-page anchors, which would be noise. */
+  a[href^='#']::after {
+    content: '';
+  }
+
+  @page {
+    margin: 16mm;
+  }
+}

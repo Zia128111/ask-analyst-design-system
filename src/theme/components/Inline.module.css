@@ -1,0 +1,88 @@
+/*
+ * CHIP / THEMEICON / INDICATOR / KBD / CODE / BLOCKQUOTE — v2.0
+ * Small inline surfaces. They appear everywhere, so an untokenised one is
+ * immediately obvious.
+ */
+
+/* Chip — filter toggles above a screener. Reuses badge geometry. */
+.chipLabel {
+  min-height: var(--ask-control-sm);
+  padding: 0 var(--ask-space-3);
+  border-radius: var(--ask-radius-sm);
+  border: var(--ask-border-thin) solid var(--ask-border-default);
+  background: var(--ask-bg-surface);
+  font-size: var(--ask-font-2xs);
+  font-weight: 600;
+  color: var(--ask-text-secondary);
+}
+
+.chipLabel[data-checked] {
+  background: var(--ask-bg-brand-subtle);
+  border-color: var(--ask-border-brand);
+  color: var(--ask-text-link);
+}
+
+/*
+ * Hover deepens BOTH the tint and the label. Deepening the tint alone would
+ * leave #0a6fdb on #e0efff at 4.17:1 — below AA. Moving the label to
+ * link-hover as well gives 5.86:1 and a clearer affordance.
+ */
+.chipLabel:hover,
+.chipLabel[data-checked]:hover {
+  border-color: var(--ask-border-brand);
+  color: var(--ask-text-link-hover);
+  /* The tick reads --chip-color, which is set inline on the chip ROOT.
+     Redeclaring it here on the LABEL cascades to the icon inside, so the
+     check mark deepens with the text instead of lagging a shade behind. */
+  --chip-color: var(--ask-text-link-hover);
+}
+
+/* ThemeIcon — a coloured tile behind an icon. */
+.themeIcon {
+  border-radius: var(--ask-radius-md);
+}
+
+/* Indicator — the unread/live dot. Never the ONLY signal of state. */
+.indicator {
+  border: var(--ask-border-thick) solid var(--ask-bg-surface);
+}
+
+/* Kbd — keyboard shortcut hints. */
+.kbd {
+  background: var(--ask-bg-muted);
+  border: var(--ask-border-thin) solid var(--ask-border-default);
+  border-bottom-width: var(--ask-border-thick);
+  border-radius: var(--ask-radius-xs);
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-secondary);
+  padding: 2px var(--ask-space-2);
+}
+
+/* Code — inline tickers, API keys, formulas. */
+.code {
+  background: var(--ask-bg-muted);
+  border-radius: var(--ask-radius-xs);
+  font-size: 0.9em;
+  color: var(--ask-text-primary);
+  padding: 2px var(--ask-space-1);
+}
+
+/* Blockquote — analyst commentary pull-quotes. */
+.blockquote {
+  border-inline-start: var(--ask-border-thick) solid var(--ask-border-brand);
+  background: var(--ask-bg-brand-subtle);
+  border-radius: var(--ask-radius-md);
+  padding: var(--ask-space-4);
+  font-size: var(--ask-font-sm);
+  line-height: var(--ask-leading-relaxed);
+  color: var(--ask-text-secondary);
+}
+
+.blockquoteCite {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-tertiary);
+  /* Mantine dims the cite with opacity, which blended text-tertiary down to
+     3.02:1 on the dark brand tint — a real dark-mode failure axe caught.
+     The token already encodes the intended contrast; no extra dimming. */
+  opacity: 1;
+}

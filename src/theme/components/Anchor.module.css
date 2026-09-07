@@ -1,0 +1,22 @@
+/*
+ * LINK — Design System v2.0
+ *
+ * Uses --ask-text-link (#0a6fdb, 4.87:1), NOT the brand #1485ff (3.60:1),
+ * because body-size link text must clear WCAG AA 4.5:1. The brand blue is
+ * still the colour of every fill, border, button and heading accent.
+ *
+ * Underlined by default: colour alone must not be the only cue that
+ * distinguishes a link from surrounding text (WCAG 1.4.1).
+ */
+.root {
+  color: var(--ask-text-link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+  transition: color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.root:hover {
+  color: var(--ask-text-link-hover);
+  text-decoration-thickness: 2px;
+}

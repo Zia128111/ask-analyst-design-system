@@ -1,0 +1,46 @@
+/*
+ * ACTION ICON — Design System v2.0
+ * Icon-only button: sort toggles, row actions, close buttons, watchlist stars.
+ *
+ * ACCESSIBILITY RULE: an ActionIcon must ALWAYS carry an aria-label. An
+ * icon-only control with no accessible name is a listed anti-pattern — a
+ * screen reader announces it as "button" and nothing more.
+ */
+.root {
+  border-radius: var(--ask-radius-md);
+  transition:
+    background-color var(--ask-duration-fast) var(--ask-ease-standard),
+    color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.root[data-variant='default'] {
+  background: var(--ask-bg-surface);
+  border: var(--ask-border-thin) solid var(--ask-border-brand);
+  color: var(--ask-text-link);
+}
+
+.root[data-variant='default']:hover:not(:disabled) {
+  background: var(--ask-bg-hover);
+}
+
+.root[data-variant='subtle'] {
+  color: var(--ask-text-secondary);
+}
+
+.root[data-variant='subtle']:hover:not(:disabled) {
+  background: var(--ask-bg-hover);
+  color: var(--ask-text-link);
+}
+
+/* WCAG 2.5.8 puts the floor at 24x24 even for the densest table row. */
+.root {
+  min-width: var(--ask-control-xs);
+  min-height: var(--ask-control-xs);
+}
+
+@media (pointer: coarse) {
+  .root {
+    min-width: var(--ask-touch-target);
+    min-height: var(--ask-touch-target);
+  }
+}

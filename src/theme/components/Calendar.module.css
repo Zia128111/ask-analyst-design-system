@@ -1,0 +1,100 @@
+/*
+ * DATE PICKER / CALENDAR — Design System v2.0
+ * Needed for the chart date-range and report archive filters. v1.0 had none.
+ *
+ * A calendar is a grid of small targets, which makes it the easiest place in a
+ * product to fall under the touch-target minimum — every day cell is sized
+ * from the control scale rather than from text.
+ */
+.calendarHeader {
+  max-width: none;
+  margin-bottom: var(--ask-space-2);
+}
+
+.calendarHeaderLevel {
+  font-size: var(--ask-font-xs);
+  font-weight: 700;
+  color: var(--ask-text-primary);
+}
+
+.weekday {
+  font-size: var(--ask-font-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ask-text-tertiary);
+  padding-bottom: var(--ask-space-1);
+}
+
+.day {
+  height: var(--ask-control-sm);
+  width: var(--ask-control-sm);
+  border-radius: var(--ask-radius-sm);
+  font-size: var(--ask-font-xs);
+  font-variant-numeric: tabular-nums; /* dates must not jitter column to column */
+  color: var(--ask-text-primary);
+  transition: background-color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.day:hover:not([data-selected]):not([data-disabled]) {
+  background: var(--ask-bg-hover);
+}
+
+.day[data-today]:not([data-selected]) {
+  /* Today is marked with a ring, not a fill, so it never reads as selected. */
+  box-shadow: inset 0 0 0 var(--ask-border-thin) var(--ask-border-brand);
+  font-weight: 700;
+}
+
+.day[data-selected] {
+  background: var(--ask-bg-brand);
+  color: var(--ask-text-inverse);
+  font-weight: 600;
+}
+
+.day[data-in-range] {
+  background: var(--ask-bg-selected);
+  color: var(--ask-text-link);
+  border-radius: 0;
+}
+
+.day[data-first-in-range] {
+  border-start-start-radius: var(--ask-radius-sm);
+  border-end-start-radius: var(--ask-radius-sm);
+}
+
+.day[data-last-in-range] {
+  border-start-end-radius: var(--ask-radius-sm);
+  border-end-end-radius: var(--ask-radius-sm);
+}
+
+.day[data-weekend] {
+  /* Markets are shut — muted, but still legible. */
+  color: var(--ask-text-tertiary);
+}
+
+/*
+ * Days spilling in from the adjacent month. Mantine dims these to #858585,
+ * which measures 3.69:1 on white and fails AA — axe caught it. text-tertiary
+ * is 7.44:1 and still reads as secondary against the in-month days.
+ */
+.day[data-outside] {
+  color: var(--ask-text-tertiary);
+  /* opacity:1 is load-bearing. Mantine dims outside days with OPACITY, which
+     blends whatever colour we set — text-tertiary came out as #535f72 (2.69:1)
+     on the dark surface. Setting the colour alone does not fix it. This is the
+     same trap as the Blockquote cite; when a Mantine part looks washed out,
+     check for opacity before changing the token. */
+  opacity: 1;
+}
+
+.day[data-disabled] {
+  color: var(--ask-text-disabled);
+}
+
+@media (pointer: coarse) {
+  .day {
+    height: var(--ask-touch-target);
+    width: var(--ask-touch-target);
+  }
+}

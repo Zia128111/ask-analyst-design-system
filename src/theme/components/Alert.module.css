@@ -1,0 +1,54 @@
+/*
+ * ALERT — Design System v2.0
+ * Inline messaging. Four tones matching the badge palette so a warning reads
+ * the same whether it is a chip in a table or a banner above one.
+ *
+ * Tone is carried by an icon AND the wording, never by colour alone.
+ * Error alerts must be rendered with role="alert" so they are announced.
+ */
+.root {
+  border-radius: var(--ask-radius-md);
+  border: var(--ask-border-thin) solid transparent;
+  padding: var(--ask-space-3) var(--ask-space-4);
+}
+
+.title {
+  font-size: var(--ask-font-xs);
+  font-weight: 700;
+  line-height: var(--ask-leading-normal);
+}
+
+.message {
+  font-size: var(--ask-font-xs);
+  line-height: var(--ask-leading-relaxed);
+}
+
+.root[data-variant='info'] {
+  background: var(--ask-bg-brand-subtle);
+  border-color: var(--ask-border-brand);
+  color: var(--ask-text-link);
+}
+
+.root[data-variant='success'] {
+  background: var(--ask-positive-bg);
+  border-color: var(--ask-positive-border);
+  color: var(--ask-positive-text);
+}
+
+.root[data-variant='warning'] {
+  background: var(--ask-warning-bg);
+  border-color: var(--ask-warning-border);
+  color: var(--ask-warning-text);
+}
+
+.root[data-variant='error'] {
+  background: var(--ask-negative-bg);
+  border-color: var(--ask-negative-border);
+  color: var(--ask-negative-text);
+}
+
+/* Body copy stays primary ink so the message is readable; only the title and
+   icon carry the tone colour. Tinted body text on a tinted fill is hard work. */
+.root :is(.message) {
+  color: var(--ask-text-primary);
+}

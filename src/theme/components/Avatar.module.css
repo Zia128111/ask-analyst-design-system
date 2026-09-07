@@ -1,0 +1,20 @@
+/*
+ * AVATAR — Design System v2.0
+ * Rounded squares, not circles. v1.0's 9px radius is off-grid; 8px is the token.
+ */
+.root {
+  --avatar-radius: var(--ask-radius-md);
+  overflow: hidden;
+}
+
+/*
+ * Mantine sizes placeholder initials as `avatar-size / 2.5`, so a 24px avatar
+ * renders its initial at 9.6px — under the 12px legibility floor. Floor it
+ * while keeping Mantine's scaling for larger sizes.
+ *
+ * RULE: below 32px, prefer an icon or image over initials. A single glyph at
+ * 12px inside a 24px square is legible but cramped.
+ */
+.placeholder {
+  font-size: max(var(--ask-font-2xs), var(--avatar-placeholder-fz));
+}

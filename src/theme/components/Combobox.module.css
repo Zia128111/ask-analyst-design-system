@@ -1,0 +1,68 @@
+/*
+ * COMBOBOX / DROPDOWN SURFACE — Design System v2.0
+ *
+ * Shared by Select, MultiSelect, Autocomplete and any Combobox. This was the
+ * real gap: the *control* was themed but the panel it opens was not, so the
+ * moment a user clicked a Select they left the design system.
+ *
+ * The dropdown is an overlay, so it sits on the popover z-index rung rather
+ * than an ad-hoc number.
+ */
+.dropdown {
+  background: var(--ask-bg-surface);
+  border: var(--ask-border-thin) solid var(--ask-border-default);
+  border-radius: var(--ask-radius-md);
+  box-shadow: var(--mantine-shadow-md);
+  padding: var(--ask-space-1);
+  z-index: var(--ask-z-popover);
+}
+
+.option {
+  border-radius: var(--ask-radius-xs);
+  padding: var(--ask-space-2) var(--ask-space-3);
+  font-size: var(--ask-font-xs);
+  line-height: var(--ask-leading-normal);
+  color: var(--ask-text-primary);
+  transition: background-color var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+/* Mantine drives keyboard navigation with data-combobox-active, NOT :hover.
+   Styling only :hover would leave keyboard users with no visible position. */
+.option[data-combobox-active] {
+  background: var(--ask-bg-hover);
+  color: var(--ask-text-link);
+}
+
+/*
+ * CHOSEN state. Select marks it `data-combobox-selected`; MultiSelect marks it
+ * `data-checked` and ALSO sets data-combobox-active on every chosen row — so
+ * these must be listed separately, and `data-checked` must come last to win
+ * over the keyboard-cursor rule above.
+ */
+.option[data-combobox-selected],
+.option[data-checked] {
+  background: var(--ask-bg-selected);
+  color: var(--ask-text-link);
+  font-weight: 600;
+}
+
+.option[data-combobox-disabled] {
+  color: var(--ask-text-disabled);
+  cursor: not-allowed;
+}
+
+.empty {
+  padding: var(--ask-space-4);
+  font-size: var(--ask-font-xs);
+  color: var(--ask-text-tertiary);
+  text-align: center;
+}
+
+.groupLabel {
+  padding: var(--ask-space-2) var(--ask-space-3);
+  font-size: var(--ask-font-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ask-text-tertiary);
+}

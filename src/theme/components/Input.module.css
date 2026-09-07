@@ -1,0 +1,99 @@
+/*
+ * FORM CONTROLS — Design System v2.0
+ * v1.0 listed "Form Input" as an unchecked TODO and shipped no spec at all,
+ * so this is new.
+ *
+ * The border uses --ask-border-strong (4.76:1), not a hairline grey. WCAG
+ * 1.4.11 requires 3:1 for the boundary that identifies a control; v1.0's
+ * #979797 measured 2.92:1 and would have failed.
+ */
+.input {
+  min-height: var(--ask-control-md);
+  padding-inline: var(--ask-space-3);
+  border: var(--ask-border-thin) solid var(--ask-border-strong);
+  border-radius: var(--ask-radius-md);
+  background: var(--ask-bg-surface);
+  color: var(--ask-text-primary);
+
+  /* 16px: anything smaller makes iOS Safari zoom the viewport on focus. */
+  font-size: var(--ask-font-sm);
+  line-height: var(--ask-leading-normal);
+
+  transition:
+    border-color var(--ask-duration-fast) var(--ask-ease-standard),
+    box-shadow var(--ask-duration-fast) var(--ask-ease-standard);
+}
+
+.input::placeholder,
+.placeholder {
+  /* text-tertiary (7.44:1), not Mantine's lighter default. DatePickerInput and
+     Select render a <span class="placeholder"> rather than a real
+     ::placeholder, so both selectors are needed — axe caught the gap. */
+  color: var(--ask-text-tertiary);
+  opacity: 1;
+}
+
+/*
+ * ONE ring on focus, not two.
+ *
+ * A field previously drew a coloured border AND the global offset focus ring,
+ * which read as a double outline. Here the border itself becomes the focus
+ * indicator: a box-shadow of exactly one pixel sits flush against it, so a 1px
+ * border reads as a solid 2px ring with no gap.
+ *
+ * box-shadow rather than `border-width: 2px` because a thicker border would
+ * resize the box and shift every field by a pixel on focus.
+ *
+ * `outline: none` is safe here ONLY because that 2px ring replaces it — and
+ * forced-colors mode, which strips box-shadow, restores a real outline (see
+ * index.css).
+ */
+.input:focus,
+.input:focus-within {
+  border-color: var(--ask-border-focus);
+  box-shadow: 0 0 0 1px var(--ask-border-focus);
+  outline: none;
+}
+
+/* An invalid field keeps its error colour while focused — the ring changes
+   hue rather than reverting to blue and hiding the error state. */
+.input[data-error]:focus,
+.input[data-error]:focus-within {
+  border-color: var(--ask-negative-border);
+  box-shadow: 0 0 0 1px var(--ask-negative-border);
+}
+
+.input[data-error] {
+  border-color: var(--ask-negative-border);
+}
+
+.input:disabled {
+  background: var(--ask-bg-muted);
+  color: var(--ask-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Labels are always visible. Placeholder-as-label is a documented
+   anti-pattern: the label vanishes the moment the user types. */
+.label {
+  font-size: var(--ask-font-xs);
+  font-weight: 600;
+  color: var(--ask-text-secondary);
+  margin-bottom: var(--ask-space-1);
+}
+
+.description {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-tertiary);
+}
+
+/* Errors sit next to the field they describe, not in a summary at the top. */
+.error {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-negative-text);
+  margin-top: var(--ask-space-1);
+}
+
+.required {
+  color: var(--ask-negative-text);
+}

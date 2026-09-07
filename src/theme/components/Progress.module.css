@@ -1,0 +1,58 @@
+/*
+ * PROGRESS / SLIDER / RATING — Design System v2.0
+ * A progress bar must never be the only signal of state: pair it with a
+ * numeric label or status text.
+ */
+.progressRoot {
+  background: var(--ask-bg-muted);
+  border-radius: var(--ask-radius-full);
+}
+
+.progressSection {
+  border-radius: var(--ask-radius-full);
+}
+
+/* Slider — used for screeners (price band, P/E range). */
+.sliderTrack::before {
+  background: var(--ask-bg-muted);
+}
+
+.sliderBar {
+  background: var(--ask-bg-brand);
+}
+
+.sliderThumb {
+  /* The thumb is a drag target: 24px is the WCAG 2.5.8 floor. */
+  width: var(--ask-control-xs);
+  height: var(--ask-control-xs);
+  border: var(--ask-border-thick) solid var(--ask-bg-brand);
+  background: var(--ask-bg-surface);
+  box-shadow: var(--mantine-shadow-xs);
+}
+
+/*
+ * The floating value bubble. Brand #1485ff, matching every other brand fill —
+ * it was shade 8 (#0759b0), a different blue.
+ *
+ * Its label is INK, not Mantine's white: white on #1485ff is 3.60:1 and fails
+ * AA, ink is 5.50:1. Same rule as the filled Button and the active nav pill.
+ */
+.sliderLabel {
+  background: var(--ask-bg-brand);
+  color: var(--ask-text-on-brand);
+  font-size: var(--ask-font-2xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sliderMarkLabel {
+  font-size: var(--ask-font-2xs);
+  color: var(--ask-text-tertiary);
+}
+
+@media (pointer: coarse) {
+  .sliderThumb {
+    width: var(--ask-control-md);
+    height: var(--ask-control-md);
+  }
+}

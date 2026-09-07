@@ -1,0 +1,211 @@
+/* ============================================================================
+ * GLOBAL BASE — Ask Analyst Design System v2.0
+ * Everything here is a system-wide guarantee, not component styling.
+ * ========================================================================= */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: var(--ask-font-sm); /* 16px — stops iOS zooming form fields */
+  line-height: var(--ask-leading-relaxed); /* 1.5 — WCAG 1.4.12 */
+  color: var(--ask-text-primary);
+  background-color: var(--ask-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+
+  /* Never fake a weight or slant. If a face is missing we want to SEE it,
+     not have the browser smear the regular cut into a fake semibold. */
+  font-synthesis: none;
+}
+
+/* ---------------------------------------------------------------------------
+ * FOCUS — v1.0 defined no focus state at all, a High-severity accessibility
+ * failure. One ring, every control, never removed. :focus-visible rather than
+ * :focus so mouse users don't get a ring on click.
+ * ------------------------------------------------------------------------ */
+
+/* NOT :where() — that has zero specificity and loses to Mantine's own
+   `.mantine-focus-auto:focus-visible`, which paints a 1.6px brand-blue ring.
+   Mantine's class is listed explicitly so this wins on equal specificity
+   plus source order (index.css is imported after @mantine/core/styles.css). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+.mantine-focus-auto:focus-visible,
+.mantine-focus-always:focus {
+  outline: var(--ask-focus-width) solid var(--ask-border-focus);
+  outline-offset: var(--ask-focus-offset);
+}
+
+:root {
+  /* Point Mantine's own ring at the same token. */
+  --mantine-focus-ring-color: var(--ask-border-focus);
+
+  /* WCAG 2.2 "Focus Not Obscured": a sticky header must not cover the focused
+     element when the browser scrolls it into view. */
+  scroll-padding-top: calc(var(--ask-control-lg) + var(--ask-space-4));
+}
+
+/* ---------------------------------------------------------------------------
+ * TOUCH TARGETS — WCAG 2.5.5 and both mobile HIGs want 44x44 on touch.
+ * Dense desktop controls stay compact; coarse pointers get lifted.
+ * ------------------------------------------------------------------------ */
+
+@media (pointer: coarse) {
+  :where(
+      button,
+      a[href],
+      input[type='checkbox'],
+      input[type='radio'],
+      [role='button'],
+      [role='tab']
+    ) {
+    min-height: var(--ask-touch-target);
+    min-width: var(--ask-touch-target);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * NUMERIC DATA — a financial product lives or dies on column alignment.
+ * Proportional digits stop prices lining up; tabular figures fix it.
+ * ------------------------------------------------------------------------ */
+
+table td,
+table th,
+[data-numeric] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Wide tables scroll inside their own container, never the page. */
+.ask-scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+/* ---------------------------------------------------------------------------
+ * MOTION — honour the OS setting in exactly one place.
+ * ------------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * SCREEN-READER-ONLY TEXT
+ * Carries meaning that is conveyed visually by a glyph or colour. Uses the
+ * clip-path technique, NOT display:none — the latter removes it from the
+ * accessibility tree, which defeats the purpose.
+ * ------------------------------------------------------------------------ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------------
+ * WINDOWS HIGH CONTRAST / forced-colors
+ * Our table rules are painted with box-shadow, which forced-colors mode
+ * strips entirely — the table would lose every rule. Restore real borders and
+ * let the OS palette drive the colours.
+ * ------------------------------------------------------------------------ */
+
+@media (forced-colors: active) {
+  table thead th {
+    border-bottom: var(--ask-border-thick) solid;
+  }
+
+  table tbody td {
+    border-bottom: var(--ask-border-thin) solid;
+  }
+
+  :focus-visible {
+    outline: var(--ask-focus-width) solid Highlight;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * GOOGLE CHARTS TOOLTIP
+ * Google Charts ignores CSS for everything EXCEPT the HTML tooltip, which is
+ * why `tooltip: { isHtml: true }` is set in googleChartTheme.ts. Without this
+ * block the tooltip is the one part of a chart that ignores the design system.
+ * The selectors are Google's own class names, so they are not ours to rename.
+ * ------------------------------------------------------------------------ */
+
+.google-visualization-tooltip {
+  background: var(--ask-chart-tooltip-bg) !important;
+  border: var(--ask-border-thin) solid var(--ask-chart-tooltip-border) !important;
+  border-radius: var(--ask-radius-md) !important;
+  box-shadow: var(--mantine-shadow-md) !important;
+  padding: var(--ask-space-2) var(--ask-space-3) !important;
+  font-family: 'Lato', sans-serif !important;
+  font-size: var(--ask-font-2xs) !important;
+  color: var(--ask-text-primary) !important;
+}
+
+.google-visualization-tooltip-item span,
+.google-visualization-tooltip-item-list li {
+  color: var(--ask-text-primary) !important;
+  font-family: 'Lato', sans-serif !important;
+  /* Values in a tooltip are numbers: keep them aligned. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Google injects an inline <ul> with browser default padding. */
+.google-visualization-tooltip-item-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* ---------------------------------------------------------------------------
+ * GOOGLE CHARTS OFF-SCREEN HELPERS — RTL FIX
+ *
+ * Google Charts hides its text-measurement nodes with an inline
+ * `position: absolute; left: -10000px`. In LTR that is harmless: content off
+ * the left edge is not scrollable. In RTL the inline-start IS the right edge,
+ * so those nodes land in the scrollable direction and add ~9,700px of
+ * horizontal page scroll.
+ *
+ * The fix mirrors Google's INTENT rather than clipping the chart: swap the
+ * physical `left` for a logical `inset-inline-start`, so the helpers sit off
+ * the non-scrolling edge in either direction. They stay 1x1 and measurable,
+ * so text metrics still work — clipping the frame would have cut tooltips.
+ * ------------------------------------------------------------------------ */
+
+/*
+ * A LOGICAL property cannot fix this. Google Charts sets dir="ltr" on its own
+ * container, so inside that subtree `inset-inline-start` resolves to `left`
+ * regardless of the page direction — the exact value we are trying to move.
+ * The override therefore has to be physical and scoped to the RTL document.
+ */
+[dir='rtl'] .ask-chart-frame div[style*='-10000px'] {
+  left: auto !important; /* rtl-ok: Google forces dir="ltr" inside the chart */
+  right: -10000px !important; /* rtl-ok: mirrors Google's own off-screen intent */
+}
