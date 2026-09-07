@@ -1,0 +1,11 @@
+# Normalise line endings so the committed dist/ is byte-identical whether it
+# was built on Windows or rebuilt by CI on Linux. Without this the
+# "dist is stale" gate fails on line endings alone.
+* text=auto eol=lf
+
+*.woff2 binary
+*.woff  binary
+*.ttf   binary
+*.png   binary
+*.jpg   binary
+*.ico   binary

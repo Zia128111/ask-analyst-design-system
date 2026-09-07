@@ -15,7 +15,9 @@
   "files": [
     "dist",
     "DESIGN-SYSTEM-v2.md",
-    "CLAUDE.md"
+    "CLAUDE.md",
+    "NOTICE",
+    "CHANGELOG.md"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -26,12 +28,13 @@
       "import": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./fonts.css": "./dist/fonts.css"
   },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && node scripts/build-fonts.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "verify:tokens": "node --experimental-strip-types scripts/verify-tokens.mjs",
@@ -77,5 +80,8 @@
     "react-dom": "^19.2.8",
     "typescript": "~6.0.2",
     "vite": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=22.6"
   }
 }
