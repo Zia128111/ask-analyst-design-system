@@ -98,7 +98,7 @@ var Gt = Object.defineProperty, Kt = (e, t) => {
 	timelineItemBody: "_timelineItemBody_1hmry_161",
 	breadcrumbsRoot: "_breadcrumbsRoot_1hmry_173",
 	breadcrumbsSeparator: "_breadcrumbsSeparator_1hmry_181"
-}, ln = { table: "_table_8duyc_41" }, S = { classNames: v }, C = {
+}, ln = { table: "_table_uug18_61" }, S = { classNames: v }, C = {
 	classNames: {
 		...v,
 		...en
@@ -194,7 +194,6 @@ var Gt = Object.defineProperty, Kt = (e, t) => {
 		classNames: on,
 		defaultProps: {
 			radius: "lg",
-			shadow: "sm",
 			withBorder: !0
 		}
 	}),
@@ -202,7 +201,6 @@ var Gt = Object.defineProperty, Kt = (e, t) => {
 		classNames: $t,
 		defaultProps: {
 			radius: "lg",
-			shadow: "sm",
 			withBorder: !0
 		}
 	}),
