@@ -1,7 +1,7 @@
 {
   "name": "@akseer/ask-analyst-design-system",
   "version": "1.0.0",
-  "description": "Ask Analyst design system — tokens, themed Mantine components, and the automated checks that keep them honest.",
+  "description": "Ask Analyst design system \u2014 tokens, themed Mantine components, and the automated checks that keep them honest.",
   "license": "UNLICENSED",
   "private": false,
   "type": "module",
@@ -32,7 +32,6 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
-    "prepare": "npm run build:lib",
     "lint": "oxlint",
     "preview": "vite preview",
     "verify:tokens": "node --experimental-strip-types scripts/verify-tokens.mjs",
@@ -44,7 +43,8 @@
     "verify:icons": "node scripts/verify-icons.mjs",
     "verify:email": "node --experimental-strip-types scripts/verify-email.mjs",
     "verify:a11y": "npx --yes @axe-core/cli http://localhost:5173 --exit --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa",
-    "audit:slots": "node scripts/audit-slots.mjs"
+    "audit:slots": "node scripts/audit-slots.mjs",
+    "prepack": "npm run build:lib"
   },
   "peerDependencies": {
     "@mantine/core": "^9.6.0",

@@ -8,7 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
+# dist/ is COMMITTED on purpose — see README. Installing this package from
+# GitHub otherwise forces every consumer to install the full devDependency
+# tree and run a build before npm can extract anything.
 dist-ssr
 *.local
 

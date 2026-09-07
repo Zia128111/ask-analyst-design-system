@@ -53,7 +53,18 @@ restated each session.
 npm install
 npm run dev       # living documentation at http://localhost:5173
 npm run verify    # all six static suites
-npm run build:lib # produce dist/ (also runs automatically on install)
+npm run build:lib # produce dist/
+```
+
+**`dist/` is committed on purpose.** Installing from GitHub with a `prepare`
+script forces every consumer to download the full devDependency tree and run a
+build before npm can extract anything — minutes per project, every time. With
+the build committed, an install is a clone and a copy.
+
+The cost is that `dist/` must be rebuilt and committed with any `src/` change:
+
+```bash
+npm run build:lib && git add dist && git commit
 ```
 
 The dev server serves a **living documentation page** showing every token and
