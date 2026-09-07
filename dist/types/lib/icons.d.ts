@@ -134,6 +134,38 @@ export declare const Icons: {
         ({ size, label, color, className }: IconProps): import("react").JSX.Element;
         displayName: string;
     };
+    readonly activity: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly trendUp: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly trendDown: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly flows: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly world: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly currency: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly briefing: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
+    readonly candles: {
+        ({ size, label, color, className }: IconProps): import("react").JSX.Element;
+        displayName: string;
+    };
 };
 /** Direction icon for a market movement, matching lib/format's Direction. */
 export declare const DIRECTION_ICON: {

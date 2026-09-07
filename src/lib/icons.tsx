@@ -1,13 +1,17 @@
 import type { ComponentType } from 'react';
 import {
+  IconActivity,
   IconAlertTriangle,
+  IconArrowsExchange,
   IconArrowsSort,
   IconBell,
   IconCalendar,
   IconCaretDownFilled,
   IconCaretUpFilled,
+  IconChartCandle,
   IconChartLine,
   IconCheck,
+  IconCoins,
   IconChevronDown,
   IconChevronRight,
   IconDownload,
@@ -18,6 +22,7 @@ import {
   IconInfoCircle,
   IconMinus,
   IconMoon,
+  IconNews,
   IconRefresh,
   IconSearch,
   IconSortAscending,
@@ -27,6 +32,9 @@ import {
   IconSun,
   IconTextDirectionLtr,
   IconTextDirectionRtl,
+  IconTrendingDown,
+  IconTrendingUp,
+  IconWorld,
   IconX,
 } from '@tabler/icons-react';
 
@@ -126,6 +134,26 @@ export const Icons = {
   calendar: makeIcon(IconCalendar as never, 'IconCalendar'),
   watch: makeIcon(IconEye as never, 'IconWatch'),
   alerts: makeIcon(IconBell as never, 'IconAlerts'),
+
+  /* --- Section marks -----------------------------------------------------
+   * For labelling a block of the product — "Most active", "Currencies" — not
+   * for annotating a value.
+   *
+   * `trendUp` / `trendDown` are line glyphs and are deliberately NOT the same
+   * shape as `up` / `down`, which are filled carets. A reader has to be able
+   * to tell "this section is about risers" from "this number rose": reusing
+   * the direction caret as a section mark would make a heading look like a
+   * quote. They also carry no colour of their own, because the heading beside
+   * them already says which is which.
+   * -------------------------------------------------------------------- */
+  activity: makeIcon(IconActivity as never, 'IconActivity'),
+  trendUp: makeIcon(IconTrendingUp as never, 'IconTrendUp'),
+  trendDown: makeIcon(IconTrendingDown as never, 'IconTrendDown'),
+  flows: makeIcon(IconArrowsExchange as never, 'IconFlows'),
+  world: makeIcon(IconWorld as never, 'IconWorld'),
+  currency: makeIcon(IconCoins as never, 'IconCurrency'),
+  briefing: makeIcon(IconNews as never, 'IconBriefing'),
+  candles: makeIcon(IconChartCandle as never, 'IconCandles'),
 } as const;
 
 /** Direction icon for a market movement, matching lib/format's Direction. */
