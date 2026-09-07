@@ -5,6 +5,24 @@
   background: var(--ask-bg-surface);
 }
 
+/*
+ * The card edge is NEUTRAL, not brand.
+ *
+ * v2.0 outlined every card in brand blue. Beside a table — whose row rules are
+ * the same blue at the same weight — the card edge read as part of the data
+ * rather than as the container around it: on a phone, where a table fills its
+ * card, it was routinely mistaken for the table having left and right borders.
+ *
+ * Blue now means one thing on a page: data. The card edge is furniture, so it
+ * takes the neutral border token and recedes. `border-default` rather than
+ * `border-subtle` because a card has to hold its shape when it does NOT
+ * contain a table — an index panel or a news card with only text loses its
+ * edge entirely at the subtle step.
+ *
+ * This is decorative chrome, not a boundary that conveys state, so WCAG 1.4.11
+ * does not apply to it. Controls that DO convey state — inputs, focus rings —
+ * keep their own stronger tokens.
+ */
 .root[data-with-border] {
-  border: var(--ask-border-thin) solid var(--ask-border-brand);
+  border: var(--ask-border-thin) solid var(--ask-border-default);
 }
