@@ -126,22 +126,32 @@ export function MarketTable({
                   {formatPrice(r.price)}
                 </Table.Td>
 
+                {/* Change is priority 2 — it is dropped below 420px. It must
+                    therefore NOT be the only place the direction is stated.
+                    The number carries a plain minus, which is a signal in its
+                    own right; the glyph and the hidden word live on the
+                    percentage cell, which never drops. */}
                 <Table.Td data-numeric data-priority="2" style={{ color: tone }}>
+                  {formatChange(r.change)}
+                </Table.Td>
+
+                <Table.Td data-numeric data-priority="1" style={{ color: tone }}>
                   {/* SVG icon, not a ▲ text glyph: a typed arrow renders
                       differently per font and is announced as punctuation.
                       The icon is decorative (no label prop, so aria-hidden);
-                      the visually hidden word carries the meaning. */}
+                      the visually hidden word carries the meaning.
+
+                      This sits on the PRIORITY 1 column deliberately. v2.0 put
+                      it on Change, so on a phone — where Change is dropped —
+                      every row fell back to colour alone, which is precisely
+                      what rule 7 exists to prevent. */}
                   <span
                     style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}
                   >
                     <DirIcon size="xs" />
                     <span className="sr-only">{DIRECTION_LABEL[dir]} </span>
-                    {formatChange(r.change)}
+                    {formatPercent(r.changePct)}
                   </span>
-                </Table.Td>
-
-                <Table.Td data-numeric data-priority="1" style={{ color: tone }}>
-                  {formatPercent(r.changePct)}
                 </Table.Td>
 
                 <Table.Td data-numeric data-priority="3">

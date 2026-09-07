@@ -5,19 +5,24 @@ export type Dir = 'ltr' | 'rtl';
  *
  * `backgroundColor: 'transparent'` so the chart sits on our own surface rather
  * than punching a white rectangle through a dark page.
+ *
+ * `_dir` is kept in the signature for API stability, and because every chart
+ * builder still takes it. Direction is no longer decided here: mirroring needs
+ * the number of series, which is a property of the data, so it moved to
+ * `mirrorValueAxis`.
  */
-export declare function baseChartOptions(scheme: Scheme, dir?: Dir): {
+export declare function baseChartOptions(scheme: Scheme, _dir?: Dir): {
     backgroundColor: string;
     colors: ("#1485ff" | "#ea580c" | "#0d9488" | "#9333ea" | "#a16207" | "#0891b2" | "#db2777" | "#4d7c0f")[];
     fontName: string;
     fontSize: number;
     chartArea: {
+        left: number;
+        right: number;
         top: number;
         bottom: number;
         width: string;
         height: string;
-        left: number;
-        right: number;
     };
     hAxis: {
         textStyle: {
@@ -110,12 +115,12 @@ export declare function lineChartOptions(scheme: Scheme, dir?: Dir, opts?: {
     fontName: string;
     fontSize: number;
     chartArea: {
+        left: number;
+        right: number;
         top: number;
         bottom: number;
         width: string;
         height: string;
-        left: number;
-        right: number;
     };
     hAxis: {
         textStyle: {
@@ -177,12 +182,12 @@ export declare function areaChartOptions(scheme: Scheme, dir?: Dir): {
     fontName: string;
     fontSize: number;
     chartArea: {
+        left: number;
+        right: number;
         top: number;
         bottom: number;
         width: string;
         height: string;
-        left: number;
-        right: number;
     };
     hAxis: {
         textStyle: {
@@ -246,12 +251,12 @@ export declare function barChartOptions(scheme: Scheme, dir?: Dir): {
     fontName: string;
     fontSize: number;
     chartArea: {
+        left: number;
+        right: number;
         top: number;
         bottom: number;
         width: string;
         height: string;
-        left: number;
-        right: number;
     };
     hAxis: {
         textStyle: {
@@ -294,10 +299,10 @@ export declare function pieChartOptions(scheme: Scheme, dir?: Dir, donut?: boole
     chartArea: {
         top: number;
         bottom: number;
-        width: string;
-        height: string;
         left: number;
         right: number;
+        width: string;
+        height: string;
     };
     backgroundColor: string;
     colors: ("#1485ff" | "#ea580c" | "#0d9488" | "#9333ea" | "#a16207" | "#0891b2" | "#db2777" | "#4d7c0f")[];
@@ -342,6 +347,34 @@ export declare function pieChartOptions(scheme: Scheme, dir?: Dir, donut?: boole
         duration: number;
     };
 };
+/**
+ * MIRRORS THE VERTICAL VALUE AXIS for right-to-left.
+ *
+ * Google Charts renders its container with `dir="ltr"` internally and has no
+ * option to put a lone vertical axis on the right. The one mechanism it does
+ * have is a SECOND axis: bind every series to `targetAxisIndex: 1` and axis 1
+ * is drawn on the right, while axis 0 — now carrying no series — is hidden.
+ *
+ * Axis 1 is a copy of the options' own `vAxis`, so whatever the chart type set
+ * there (`viewWindowMode: 'pretty'` for a line, `minValue: 0` for a column)
+ * survives the mirror. Rebuilding it from tokens instead would quietly give an
+ * Arabic line chart a zero baseline, and a 0.7% index move would draw flat.
+ *
+ * Only for charts whose VALUE axis is vertical — line, area, column. A bar
+ * chart's vertical axis is its CATEGORY axis, which Google will not move, and
+ * a pie has no axes: both are left alone, with the gutter on the drawing side
+ * so their labels stay readable.
+ *
+ * `seriesCount` is why this is a separate step rather than part of the option
+ * builders: the number of series is a property of the DATA, which the builders
+ * never see. `AskChart` applies it. A caller building options by hand must do
+ * the same, or accept an axis on the left in Arabic — still legible, just not
+ * mirrored.
+ */
+export declare function mirrorValueAxis<T extends {
+    vAxis: object;
+    chartArea: object;
+}>(options: T, dir: Dir, seriesCount: number): T;
 /** Radius token for the HTML tooltip, exported so CSS and JS cannot drift. */
 export declare const CHART_TOOLTIP_RADIUS: "8px";
 //# sourceMappingURL=googleChartTheme.d.ts.map

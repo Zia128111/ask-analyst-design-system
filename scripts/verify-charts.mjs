@@ -18,6 +18,7 @@ import {
   green,
   red,
 } from '../src/theme/tokens.ts';
+import { lineChartOptions, mirrorValueAxis } from '../src/lib/googleChartTheme.ts';
 
 /* ---------- colour maths ---------- */
 const hex2rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
@@ -149,6 +150,59 @@ for (const [name, d] of Object.entries(chartDiverging)) {
   const spread = Math.max(r, g, b) - Math.min(r, g, b);
   check(`${name} midpoint is neutral (not a hue)`, spread < 0.06, `${d.neutral} spread ${r1(spread * 100)}%`);
 }
+
+/* ---------------------------------------------------------------------------
+ * RTL VALUE AXIS
+ *
+ * v2.0 swapped the chart-area gutter for Arabic without moving the axis, so
+ * Google drew the labels on the left in a 16px slot and truncated every one of
+ * them to an ellipsis. These checks pin the three properties that stop that
+ * happening again: the gutter defaults to the drawing side, mirroring actually
+ * rebinds the series, and the mirrored axis inherits the chart type's own
+ * vAxis settings rather than a rebuilt copy.
+ * ------------------------------------------------------------------------ */
+
+const ltr = lineChartOptions('light', 'ltr');
+check(
+  'LTR reserves the wide gutter where the axis is drawn',
+  ltr.chartArea.left === 64 && ltr.chartArea.right === 16,
+  `left ${ltr.chartArea.left} / right ${ltr.chartArea.right}`,
+);
+
+const unmirrored = lineChartOptions('light', 'rtl');
+check(
+  'RTL options alone never starve the axis gutter',
+  unmirrored.chartArea.left === 64,
+  `left ${unmirrored.chartArea.left} — labels are drawn here whatever dir says`,
+);
+
+const mirrored = mirrorValueAxis(lineChartOptions('light', 'rtl'), 'rtl', 2);
+check(
+  'mirroring binds EVERY series to the right-hand axis',
+  mirrored.series && Object.keys(mirrored.series).length === 2 &&
+    Object.values(mirrored.series).every((v) => v.targetAxisIndex === 1),
+  JSON.stringify(mirrored.series),
+);
+check(
+  'mirroring moves the gutter to the right',
+  mirrored.chartArea.right === 64 && mirrored.chartArea.left === 16,
+  `left ${mirrored.chartArea.left} / right ${mirrored.chartArea.right}`,
+);
+check(
+  'mirrored axis inherits the chart type vAxis settings',
+  mirrored.vAxes[1].viewWindowMode === 'pretty',
+  'a rebuilt axis would zero-baseline an Arabic line chart',
+);
+check(
+  'the unused axis is hidden, not left to draw furniture',
+  mirrored.vAxes[0].textPosition === 'none',
+  String(mirrored.vAxes[0].textPosition),
+);
+check(
+  'LTR is left untouched by the mirror',
+  mirrorValueAxis(ltr, 'ltr', 2) === ltr,
+  'same object — no work done',
+);
 
 /* ---------- report ---------- */
 const failed = results.filter((r) => !r.ok);

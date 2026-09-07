@@ -7,6 +7,7 @@ import {
   barChartOptions,
   baseChartOptions,
   lineChartOptions,
+  mirrorValueAxis,
   pieChartOptions,
   type Dir,
   type Scheme,
@@ -68,6 +69,21 @@ const GOOGLE_TYPE: Record<ChartKind, GoogleChartWrapperChartType> = {
   Donut: 'PieChart',
 };
 
+/**
+ * Chart kinds whose VALUE axis is the vertical one, and can therefore be
+ * mirrored to the inline-end side in Arabic.
+ *
+ * 'Bar' is absent on purpose: its bars run horizontally, so its vertical axis
+ * is the CATEGORY axis, which Google Charts will not move. 'Pie' has no axes.
+ * Both keep the value-axis gutter on the side Google actually draws on, which
+ * is what stops their labels from truncating.
+ */
+const VERTICAL_VALUE_AXIS: ReadonlySet<ChartKind> = new Set<ChartKind>([
+  'Line',
+  'Area',
+  'Column',
+]);
+
 function optionsFor(kind: ChartKind, scheme: Scheme, dir: Dir) {
   switch (kind) {
     case 'Line':
@@ -106,6 +122,10 @@ export function AskChart({
         ? 'light'
         : (document.documentElement.getAttribute('data-mantine-color-scheme') as Scheme) ?? 'light';
 
+  // The number of data columns after the category column. Mirroring binds each
+  // of them to the right-hand axis, so it has to be counted from the data.
+  const seriesCount = Math.max(0, (data[0]?.length ?? 1) - 1);
+
   // Rebuilt whenever the scheme flips — Google Charts cannot read CSS vars,
   // so dark mode is a re-render rather than a variable swap.
   const merged = useMemo(() => {
@@ -114,8 +134,11 @@ export function AskChart({
     const colors = seriesKeys
       ? seriesKeys.map((name) => createSeriesPalette(seriesKeys).colorFor(name))
       : base.colors;
-    return { ...base, colors, ...(options ?? {}) };
-  }, [kind, scheme, dir, seriesKeys, options]);
+    const themed = VERTICAL_VALUE_AXIS.has(kind)
+      ? mirrorValueAxis(base, dir as Dir, seriesCount)
+      : base;
+    return { ...themed, colors, ...(options ?? {}) };
+  }, [kind, scheme, dir, seriesKeys, seriesCount, options]);
 
   const [header, ...rows] = data;
 

@@ -350,6 +350,16 @@ export const container = {
   lg: '1024px',
   xl: '1280px',
   content: '1280px', // main content max — was a fixed 1260px
+  /**
+   * Data-dense pages: a market board, a screener, a comparison table.
+   *
+   * `content` is a READING measure — past about 1280px a paragraph needs the
+   * eye to travel too far back to find the next line. A table of numbers has
+   * no such limit: every extra 300px is another column that would otherwise
+   * be dropped or pushed into a horizontal scroller. Two measures, because
+   * they answer two different questions.
+   */
+  wide: '1600px',
   prose: '68ch', //     measure for long-form reading
 } as const;
 
