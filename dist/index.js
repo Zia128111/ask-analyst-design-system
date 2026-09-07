@@ -1726,11 +1726,11 @@ function Ar({ asOf: e, delayedMinutes: t }) {
 	});
 }
 var jr = {
-	scroller: "_scroller_3bdgz_37",
-	stickyHeader: "_stickyHeader_3bdgz_145",
-	"ask-tick-up": "_ask-tick-up_3bdgz_1",
-	"ask-tick-down": "_ask-tick-down_3bdgz_1",
-	stale: "_stale_3bdgz_313"
+	scroller: "_scroller_xix5o_37",
+	stickyHeader: "_stickyHeader_xix5o_141",
+	"ask-tick-up": "_ask-tick-up_xix5o_1",
+	"ask-tick-down": "_ask-tick-down_xix5o_1",
+	stale: "_stale_xix5o_309"
 };
 //#endregion
 //#region src/components/MarketTable.tsx

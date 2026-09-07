@@ -26,27 +26,25 @@
   container-type: inline-size;
   container-name: ask-table;
 
-  /* Edge shadows that appear only when there is more content that way.
-     Two layers: an opaque "cover" pinned to the edge, and the shadow itself.
-     background-attachment: local moves the covers with the content, so the
-     shadow is revealed exactly when the content is scrolled. */
-  background-image:
-    linear-gradient(to right, var(--ask-bg-surface) 30%, transparent),
-    linear-gradient(to left, var(--ask-bg-surface) 30%, transparent),
-    linear-gradient(to right, rgba(15, 23, 42, 0.12), transparent 12px),
-    linear-gradient(to left, rgba(15, 23, 42, 0.12), transparent 12px);
-  background-position:
-    left center,
-    right center,
-    left center,
-    right center;
-  background-repeat: no-repeat;
-  background-size:
-    32px 100%,
-    32px 100%,
-    12px 100%,
-    12px 100%;
-  background-attachment: local, local, scroll, scroll;
+  /*
+   * NO EDGE SHADOWS.
+   *
+   * v2.0 painted a 12px shadow at each inline edge, meant to appear only when
+   * there was more table that way: an opaque `background-attachment: local`
+   * cover moved with the content and uncovered the `scroll`-attached shadow
+   * beneath it exactly when the table was scrolled.
+   *
+   * It did not work. The covers never fully hid the shadows, so a table that
+   * fits its box — which, now that column priority is container-based, is most
+   * of them — drew two grey vertical bands down its left and right edges. On a
+   * phone, where the table fills the card, they read as table borders. This is
+   * a system whose table spec is "horizontal rules only, no outer frame, no
+   * column separators", so it was drawing precisely the thing it forbids.
+   *
+   * The scrollbar is the affordance. `scrollbar-width: thin` above keeps it
+   * unobtrusive, and it has the considerable advantage of appearing only when
+   * there is actually something to scroll.
+   */
 }
 
 /* Pinned identifier column. */
