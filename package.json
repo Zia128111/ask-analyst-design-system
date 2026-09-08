@@ -1,6 +1,6 @@
 {
   "name": "@akseer/ask-analyst-design-system",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ask Analyst design system \u2014 tokens, themed Mantine components, and the automated checks that keep them honest.",
   "license": "UNLICENSED",
   "private": false,

@@ -4,6 +4,30 @@ All notable changes to the Ask Analyst Design System.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] — 2026-09-07
+
+Ships the work merged in PR #1 plus the table and card corrections that
+followed. `v1.0.0` predates all of it.
+
+### Added
+- `mergeChartOptions` and `mirrorValueAxis` exported from the chart helpers.
+- A twelve-column layout grid; column priority is now container-based rather
+  than viewport-based, so a narrow column drops fields whatever the window
+  size.
+- Eight section-mark icons in the curated Tabler set.
+- `HeaderWidth` on `AppHeader`.
+- Coverage grew with the code it guards: 88 token checks (from 85) and 29
+  chart checks (from 18).
+
+### Fixed
+- The RTL chart axis, and a direction glyph that vanished in some states.
+- Chart options were replaced wholesale rather than merged, so passing one
+  override silently dropped the rest of the themed defaults. They now merge
+  one level deep.
+- Table edge shadows drew borders the spec forbids. Row rules are collapsed
+  borders now, and the card shadow is gone.
+- The card edge used the brand colour where it should be neutral.
+
 ## [1.0.0] — 2026-09-07
 
 First consumable release. The system existed before this, but only as an app —
