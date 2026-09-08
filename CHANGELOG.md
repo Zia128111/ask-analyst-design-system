@@ -4,6 +4,26 @@ All notable changes to the Ask Analyst Design System.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] — 2026-09-07
+
+### Added
+- Server-safe entry points for Next.js App Router:
+
+      import { formatPrice } from '@akseer/ask-analyst-design-system/format';
+      import { tokens }      from '@akseer/ask-analyst-design-system/tokens';
+
+  The root entry carries a `use client` banner, because Mantine components
+  are client components. That banner applied to the whole bundle, so tokens
+  and formatters — plain data and pure functions — were fenced behind the
+  client boundary. Calling one from a Server Component failed with
+  *"Attempted to call formatPrice() from the server but formatPrice is on
+  the client"*, which also ruled them out of `generateMetadata` and route
+  handlers.
+
+  Verified against Next.js 16.3.4 / React 19.2.8: a Server Component and a
+  page title both render formatted values, and the client components still
+  work unchanged.
+
 ## [1.0.1] — 2026-09-07
 
 Ships the work merged in PR #1 plus the table and card corrections that

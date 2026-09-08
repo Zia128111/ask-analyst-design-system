@@ -49,9 +49,16 @@ export default defineConfig({
     // One stylesheet, not one per component — consumers make a single import.
     cssCodeSplit: false,
     lib: {
-      entry: resolve(root, 'src/index.ts'),
+      /* Three entries. The root is the client bundle; tokens and format are
+         plain data and pure functions, split out so a Next.js Server
+         Component can use them — see src/entries/tokens.ts. */
+      entry: {
+        index: resolve(root, 'src/index.ts'),
+        tokens: resolve(root, 'src/entries/tokens.ts'),
+        format: resolve(root, 'src/entries/format.ts'),
+      },
       formats: ['es'],
-      fileName: () => 'index.js',
+      fileName: (_format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
       /* Anything the consuming app also owns must NOT be bundled. Two copies
@@ -78,9 +85,12 @@ export default defineConfig({
           if (name.endsWith('.css')) return 'styles.css';
           return 'fonts/[name][extname]';
         },
-        /* Mantine components are client components. Without this directive a
-           Next.js app-router consumer gets a server-render error on import. */
-        banner: "'use client';",
+        /* Mantine components are client components, so the root bundle needs
+           the directive or a Next.js app-router consumer gets a server-render
+           error on import. It must NOT go on the tokens and format entries —
+           that is exactly what made them unusable from a Server Component. */
+        banner: (chunk: { name: string }) =>
+          chunk.name === 'index' ? "'use client';" : '',
       },
     },
   },

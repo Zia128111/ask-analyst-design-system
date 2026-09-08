@@ -40,6 +40,20 @@ components (`MarketTable`, `AskChart`, `PageHeading`, `AppHeader`, `Logo`,
 import { Icons, formatPrice, MarketTable } from '@akseer/ask-analyst-design-system';
 ```
 
+### Next.js (App Router)
+
+Mantine is client-only, so the root entry is a client module. Import tokens
+and formatters from the server-safe entries when you need them during SSR, in
+`generateMetadata`, or in a route handler:
+
+```tsx
+import { formatPrice } from '@akseer/ask-analyst-design-system/format';
+import { tokens } from '@akseer/ask-analyst-design-system/tokens';
+```
+
+Put `MantineProvider` in a `'use client'` providers file, and `ColorSchemeScript`
+in the root layout `<head>`. Verified against Next.js 16 and React 19.
+
 React, Mantine and `react-dom` are **peer** dependencies, so the consuming app
 owns exactly one copy of each. Self-hosted Lato ships inside the package.
 
